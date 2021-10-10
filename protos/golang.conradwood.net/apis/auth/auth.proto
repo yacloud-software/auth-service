@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package auth;
+option java_package = "net.conradwood.golang.apis.auth";
+import "golang.conradwood.net/apis/common/common.proto";
+
+message AuthResponse {
+  bool Valid = 1;           // if not valid, there's no user object
+  string PublicMessage = 2; // to display user why auth went wrong
+  string LogMessage = 3;    // to log why auth went wrong
+  User User = 4;            // the user that's been authenticated
+  string Token = 5;         // the token for this user
+}
+message SignedAuthResponse {
+  bool Valid = 1;           // if not valid, there's no user object
+  string PublicMessage = 2; // to display user why auth went wrong
+  string LogMessage = 3;    // to log why auth went wrong
+  SignedUser User = 4;            // the user that's been authenticated
+  string Token = 5;         // the token for this user
+}
+/*
+ * this message contains a serialised proto and the signature over the serialised proto
+ * we are migrating towards this, as it allows us to update the proto in future without
+ * breaking backwards compatibility. The Signature within SignedUser.User is non-defined
+ * and may contain random bytes or 0. The only guarantee is that go-easyops can verify it as valid.
+ */
+message SignedUser {
+  bytes User=1; // serialsed version of auth.User proto
+  bytes Signature=2;
+}
+
+/*
+this message is cryptographically signed.
+Adding/removing fields must be done carefully so that the signature matches all fields.
+It also makes backwards compatibility difficult.
+read the code in auth-service/.../authbe/sign.go and go-easyops/.../auth/sign_verify.go
+ */
+message User {
+  string ID = 1;
+  string Email = 2;
+  string FirstName = 3;
+  string LastName = 4;
+  string Password = 5; // only set when creating users
+  repeated Group Groups = 6;
+  string Abbrev = 7;       // e.g. "cnw"
+  bool Active = 8;         // is user active
+  bool ServiceAccount = 9; // true if it is a "service" account and not a human
+  bool EmailVerified = 10; // true if email is verified
+  /*
+   0:not signed, otherwise version:
+   Version 2: ed25519 over ID, Email, FirstName, LastName, Active,Abbrev, GroupIDs, ServiceAccount, EmailVerified
+  */
+  uint32 SignatureVersion = 11;
+  uint32 SignedAt = 12;     // timestamp, UTC when it was signed
+  bytes SignatureID = 13;   // auth service signature over ID & SignedAt
+  bytes SignatureFull = 14; // auth service signature over [see version]
+  string OrganisationID = 15;// optional: an organisation this user belongs to
+}
+message LinkGroupOrganisation {
+  uint64 ID=1;
+  uint64 OrgID=2; //[(common.sql_reference)="organisation.id"];
+  uint64 GroupID=3; //[(common.sql_reference)="groups.id"];
+}
+message Organisation {
+  uint64 ID = 1;
+  string Name = 2;
+}
+message Group {
+  string ID = 1;
+  string Name = 2;
+  // a free text field describing the usage of this group
+  string Description = 3;
+}
+message GroupList {
+  repeated Group Groups = 1;
+}
+
+message AddToGroupRequest {
+  string UserID = 1;
+  string GroupID = 2;
+}
+message RemoveFromGroupRequest {
+  string UserID = 1;
+  string GroupID = 2;
+}
+message ListGroupRequest {
+  string GroupID = 1;
+  bool IncludeInactiveUsers = 2;
+}
+
+message UserListResponse {
+  repeated User Users = 1;
+}
+

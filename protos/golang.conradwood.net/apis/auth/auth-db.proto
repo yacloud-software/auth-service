@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package auth;
+option java_package = "net.conradwood.golang.apis.auth";
+// import "golang.conradwood.net/apis/common/common.proto";
+
+/*
+ id            | bigint                      |           | not null |
+ email         | character varying(1000)     |           | not null |
+ emailverified | integer                     |           | not null |
+ firstname     | character varying(1000)     |           | not null |
+ lastname      | character varying(1000)     |           | not null |
+ password      | character varying(1000)     |           | not null |
+ created       | timestamp without time zone |           | not null |
+ lastmodified  | timestamp without time zone |           | not null |
+ creator_id    | bigint                      |           | not null |
+ modifiedby_id | bigint                      |           | not null |
+ admin         | boolean                     |           | not null |
+*/
+message UserDetail {
+  uint64 ID = 1;
+  string Email = 2;
+  string FirstName = 3;
+  string LastName = 4;
+  string Password = 5;
+  bool Admin = 6;
+  uint32 EmailVerified = 7;
+}
+enum TokenType {
+  UNDEFINED=0;
+  PERMANENT=1;
+  SESSION=2;
+}
+message UserTokens {
+  uint64 ID=1;
+  uint64 UserID = 2;
+  string Token = 3;
+  uint32 Created = 4;
+  uint32 Expiry = 5;
+  TokenType TokenType=6;
+  
+}
+
+message GroupDB {
+  uint64 ID = 1;
+  string Name = 2;
+  string Description = 3;
+}
+
+message EmailVerifyPins {
+  uint64 ID = 1;
+  uint64 UserID = 2;
+  string Pin = 3;
+  uint64 Created = 4;  // when was this pin created
+  uint64 Accepted = 5; // when was this verified and accepted?
+}
+
+message SudoStatus {
+  uint64 ID = 1;
+  // which user has sudoed
+  uint64 UserID = 2;
+  // to which group? typcially root
+  string GroupID = 3;
+  // for how long?
+  uint32 Expiry = 4;
+}
