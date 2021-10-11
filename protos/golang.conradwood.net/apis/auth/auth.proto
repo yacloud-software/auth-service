@@ -92,3 +92,356 @@ message UserListResponse {
   repeated User Users = 1;
 }
 
+
+
+message UpdatePasswordRequest {
+  string NewPassword = 1;
+}
+message ElevateAccessRequest {
+  // groupids I want to be part of. If this contains existing groups, the call will be rejected.
+  repeated string GroupIDs = 1;
+  // after this many seconds have elapsed the access will be downgraded again
+  uint32 DurationSecs = 2;
+}
+
+message ForceUpdatePasswordRequest {
+  string UserID = 1;
+  string NewPassword = 2;
+}
+
+// authorised by "root_auth_admin" group members
+message EditAnyUserRequest {
+  string UserID = 1;
+  string FirstName = 2;
+  string LastName = 3;
+}
+
+message EditSelfRequest {
+  string FirstName = 1;
+  string LastName = 2;
+}
+
+// CreateGroup holds the details required for creating a group
+message CreateGroup {
+  string Name = 1;
+  string Description = 4;
+}
+
+// CreateGroupRequest holds the details of a request to create a group
+message CreateGroupRequest {
+  CreateGroup CreateGroup = 1;
+}
+
+// CreateGroupResponse returns the details of a group that has been created
+message CreateGroupResponse {
+  Group Group = 1;
+}
+
+message GetGroupRequest {
+  string ID = 1;
+}
+
+message GetGroupResponse {
+  Group Group = 1;
+}
+message GroupDescriptionRequest {
+  string GroupID = 1;
+  string Description = 2;
+}
+
+message CreateServiceRequest {
+  string ServiceName = 1;
+  string Token = 2; // optional, one will be generated if this is not set
+}
+message NewService {
+  User User = 1;    // the user that has been created
+  string Token = 2; // the new service token
+}
+
+message ResetRequest {
+  string Email = 1;
+}
+message ExpireTokenRequest {
+  string Token = 1; // the token to expire
+}
+
+message VerifyEmailRequest {
+  string Pin = 1; // the pin the user entered
+}
+
+message VerifyEmailResponse {
+  bool Verified = 1; // true if verification was positive
+}
+
+message GetTokenRequest {
+  uint64 DurationSecs = 1; // how long does it need to be valid for? (0=unlimited)
+}
+message TokenResponse {
+  uint32 Expiry = 1; // expirydate
+  string Token = 2;  // the new token
+}
+message UserList {
+  repeated SignedUser Users=1;
+}
+
+/*
+This service manages users
+various tasks around keeping lists and users up-to-date.
+A word about the UserID:
+The UserID is an opaque alphanumeric identifier with max 64 chars, identifying exactly one useraccount.
+The UserID is guaranteed to be stable over the lifetime of the useraccount.
+(means it is safe to store in databases).
+The format and content of the UserID must be treated as opaque by servers.
+Currently it's a string representation of a database id, but it may, in future, include
+routing information too, e.g. ldap/95 and copper/102345345 etc.
+If you store it as a number, be warned of dragons who will come your way.
+The UserID is also distinct from the username:
+As far as the AuthenticationService is concerned a user has a firstname & lastname and
+an emailaddress, but no "username".
+A login program is free to choose how login is presented.
+For example, Apple & Microsoft have a preference for login via "Firstname Lastname"
+and Google via "email" and Unix via "abbrev".
+It is accurate to say that firstname, lastname and email are attributes of a userobject.
+*/
+service AuthManagerService {
+  // very dangerous. updates *any* user.
+  // calls to this method are limited to specific services
+  rpc ForceUpdatePassword(ForceUpdatePasswordRequest) returns (common.Void);
+
+  // also limited to staff only
+  rpc ListGroups(common.Void) returns (GroupList);
+  // get a user by ID - DEPRECATED
+  rpc GetUserByID(ByIDRequest) returns (User);
+  // get a user by Email - DEPRECATED
+  rpc GetUserByEmail(ByEmailRequest) returns (User);
+  // get a user by ID
+  rpc SignedGetUserByID(ByIDRequest) returns (SignedUser);
+  // get a user by Email
+  rpc SignedGetUserByEmail(ByEmailRequest) returns (SignedUser);
+  // create a serviceaccount
+  rpc CreateService(CreateServiceRequest) returns (NewService);
+  // requires root user manager access - see code
+  rpc CreateUser(CreateUserRequest) returns (User);
+  // requires root user manager access - see code. a "fake" user is used, for example, for the prober. it has an extremly short lifespan (<60 secs) and is severly limited in what it can do (e.g. cannot log in). Also it does not add/modify userids
+  rpc CreateFakeUser(CreateUserRequest) returns (User);
+
+  // create an email to user to reset password
+  rpc ResetPasswordEmail(ResetRequest) returns (common.Void);
+
+  // expire token
+  rpc ExpireToken(ExpireTokenRequest) returns (common.Void);
+
+  // reset a users' password (the one whose context this is)
+  rpc UpdateMyPassword(UpdatePasswordRequest) returns (common.Void);
+
+  // send an emailverification email
+  rpc SendEmailVerify(common.Void) returns (common.Void);
+
+  // verify an email verification pin
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse);
+
+  // get me another token
+  rpc GetTokenForMe(GetTokenRequest) returns (TokenResponse);
+  // get *me* (my useraccount)
+  rpc WhoAmI(common.Void) returns (User);
+  // if a token was compromised, replace it with a different one
+  rpc TokenCompromised(TokenCompromisedRequest) returns (NewToken);
+  // temporarily become root. User objects for the current user will include group 'root' for a short while
+  rpc Sudo(SudoRequest) returns (common.Void);
+  // get a group by id - if user has access to it
+  rpc GetGroupByID(GetGroupRequest) returns (Group);
+  // if we have just linked some account (e.g. via Google Oauth) we need to store the information. Use this call to do so. (this is obviously privileged and for some services only)
+  rpc StoreRemote(RemoteStoreRequest) returns (common.Void);
+  // if all we have is a oauth thing (which we stored with StoreOAuth) we can get a user with this
+  rpc UserByRemoteToken(RemoteUserRequest) returns (RemoteUser);
+  // if we have a user but want its OAuthDetails we can get them with this
+  rpc GetMyRemoteDetails(common.Void) returns (RemoteUser);
+  // expire all (non-permanent) tokens for Me
+  rpc LogMeOut(common.Void) returns (User);
+  // logout some other user (privileged operation)
+  rpc LogSomeoneOut(ByIDRequest) returns (User);
+  // get user by abbreviation
+  rpc GetByAbbreviation(ByAbbrevRequest) returns (User);
+  // get all users, root only, very privileged call
+  rpc GetAllUsers(common.Void) returns (UserList);
+}
+message ByAbbrevRequest {
+  string Abbrev=1;
+}
+
+message RemoteStoreRequest {
+  string UserID=1; // which userid we store it for
+  string OurToken=2; // the "code" we generated for this user
+  string RemoteUserID=3; // the remote user id (if known)
+  string Provider=4; // e.g. "GOOGLE"
+}
+
+message RemoteUserRequest {
+  string OurToken=1; // the "code" we generated (and received from remote)
+}
+message RemoteUser {
+  User User=1;
+  repeated RemoteUserDetail Details=2; // the remote details linked with this account
+}
+message RemoteUserDetail {
+  uint64 ID=1;
+  string UserID=2; // the userid this refers to
+  string Provider=3; // e.g."GOOGLE"
+  string OurToken=4; // the token we used to link account
+  uint32 Created=5; // when did we create it
+  string RemoteUserID=6; // if known, may be nul
+}
+
+
+message SudoRequest {
+  string UserID = 1; // if empty, use current user
+}
+
+message TokenCompromisedRequest {
+  string Token = 1;
+}
+message NewToken {
+  string Token = 1;
+}
+
+message VerifyRequest {
+  string Token = 1;
+}
+
+message VerifyResponse {
+  bool Valid = 1;
+  User User = 2;
+}
+
+message ByIDRequest {
+  string UserID = 1;
+}
+
+message VerifyPasswordResponse {
+  User User = 1;
+  string Token = 2;
+}
+
+message CreateUserRequest {
+  string Email = 1; // e.g. junkmail@conradwood.net
+  string FirstName = 2;
+  string LastName = 3;
+  string Password = 4;
+  string Abbrev = 5;      // e.g. cnw
+  bool EmailVerified = 6; // if true, email is marked as verified. (privileged)
+}
+
+message ByEmailRequest {
+  string Email = 1;
+}
+message UserEmailAddressList {
+  repeated string Emails = 1;
+}
+message ListAllGroupsRequest {
+}
+message NewPasswordResponse {
+  string Password = 1;
+}
+message UserDef {
+  string UserID = 1;
+}
+
+message AddTokenRequest {
+  string UserID = 1;
+  string Token = 2;
+  uint32 ExpiryTimestamp = 3;
+}
+
+
+
+
+//Authenticate Users
+service AuthenticationService {
+  // DEPRECATED authenticate a user by username/password, return token
+  rpc GetByPassword(AuthenticatePasswordRequest) returns (AuthResponse);
+  // DEPRECATED authenticate a user by token, return same token
+  rpc GetByToken(AuthenticateTokenRequest) returns (AuthResponse);
+  // authenticate a user by username/password, return token
+  rpc SignedGetByPassword(AuthenticatePasswordRequest) returns (SignedAuthResponse);
+  // authenticate a user by token, return same token
+  rpc SignedGetByToken(AuthenticateTokenRequest) returns (SignedAuthResponse);
+  // get the public signing key
+  rpc GetPublicSigningKey(common.Void) returns (KeyResponse);
+}
+
+message KeyResponse {
+  bytes Key = 1;
+  string CloudName=2; // e.g. yacloud.eu
+}
+message AuthenticatePasswordRequest {
+  string Email = 1;
+  string Password = 2;
+}
+message AuthenticateTokenRequest {
+  string Token = 1;
+}
+
+
+
+
+
+/*
+ id            | bigint                      |           | not null |
+ email         | character varying(1000)     |           | not null |
+ emailverified | integer                     |           | not null |
+ firstname     | character varying(1000)     |           | not null |
+ lastname      | character varying(1000)     |           | not null |
+ password      | character varying(1000)     |           | not null |
+ created       | timestamp without time zone |           | not null |
+ lastmodified  | timestamp without time zone |           | not null |
+ creator_id    | bigint                      |           | not null |
+ modifiedby_id | bigint                      |           | not null |
+ admin         | boolean                     |           | not null |
+*/
+message UserDetail {
+  uint64 ID = 1;
+  string Email = 2;
+  string FirstName = 3;
+  string LastName = 4;
+  string Password = 5;
+  bool Admin = 6;
+  uint32 EmailVerified = 7;
+}
+enum TokenType {
+  UNDEFINED=0;
+  PERMANENT=1;
+  SESSION=2;
+}
+message UserTokens {
+  uint64 ID=1;
+  uint64 UserID = 2;
+  string Token = 3;
+  uint32 Created = 4;
+  uint32 Expiry = 5;
+  TokenType TokenType=6;
+  
+}
+
+message GroupDB {
+  uint64 ID = 1;
+  string Name = 2;
+  string Description = 3;
+}
+
+message EmailVerifyPins {
+  uint64 ID = 1;
+  uint64 UserID = 2;
+  string Pin = 3;
+  uint64 Created = 4;  // when was this pin created
+  uint64 Accepted = 5; // when was this verified and accepted?
+}
+
+message SudoStatus {
+  uint64 ID = 1;
+  // which user has sudoed
+  uint64 UserID = 2;
+  // to which group? typcially root
+  string GroupID = 3;
+  // for how long?
+  uint32 Expiry = 4;
+}
