@@ -295,6 +295,7 @@ message RemoteUserDetail {
 
 message SudoRequest {
   string UserID = 1; // if empty, use current user
+  string Reason = 2; // notify peeps on slack why someone became root
 }
 
 message TokenCompromisedRequest {
