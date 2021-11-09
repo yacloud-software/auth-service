@@ -9,7 +9,7 @@ import (
 
 func send_notification(format string, args ...interface{}) {
 	text := fmt.Sprintf(format, args...)
-	p := &slack.PostRequest{UserID: "1", Text: text}
+	p := &slack.PostRequest{UserID: "7", Text: text}
 	go func(pr *slack.PostRequest) {
 		ctx := authremote.Context()
 		_, err := slack.GetSlackGatewayClient().Post(ctx, pr)
