@@ -1,2 +1,2 @@
 all:
-	go install cwhoami.go
+	go install ${LDFLAGS} cwhoami.go

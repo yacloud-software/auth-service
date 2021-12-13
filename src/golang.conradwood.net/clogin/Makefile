@@ -1,2 +1,2 @@
 all:
-	go install clogin.go
+	go install ${LDFLAGS} clogin.go

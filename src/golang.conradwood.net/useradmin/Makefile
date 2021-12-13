@@ -1,2 +1,2 @@
 all:
-	go install useradmin.go
+	go install ${LDFLAGS} useradmin.go

@@ -1,2 +1,2 @@
 all:
-	go install yasudo.go
+	go install ${LDFLAGS} yasudo.go
