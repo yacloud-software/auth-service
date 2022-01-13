@@ -207,6 +207,7 @@ func TestVerifyMethod(t *testing.T) {
 		ID: "11",
 	}
 	sign(myUser)
+	sat := myUser.SignedAt
 	v := VerifySignature(myUser)
 	if !v {
 		t.Errorf("verify()-method failed\n")
@@ -231,7 +232,7 @@ func TestVerifyMethod(t *testing.T) {
 	u2.SignedAt = 0
 	v = VerifySignature(u2)
 	if v {
-		t.Errorf("verify()-method did not detect timestamp change\n")
+		t.Errorf("verify()-method did not detect timestamp change (signed at before: %d, after: %d)\n", sat, u2.SignedAt)
 	}
 
 	*u2 = *myUser
