@@ -228,7 +228,7 @@ golang.conradwood.net/apis/deploymonkey v1.1.1433 h1:DTpMx4DfOhey8PSYXPV88c2+p6y
 golang.conradwood.net/apis/deploymonkey v1.1.1433/go.mod h1:D5eGV5SK8VPs9ZaAxrLphRXsZMW08S1KnV0PtMsr9hc=
 golang.conradwood.net/apis/echoservice v1.1.1433 h1:ICnKmLxpRLgdVekuMpTLoqcm/Ey73BZYQ4ZyxDw0lXw=
 golang.conradwood.net/apis/echoservice v1.1.1433/go.mod h1:n7dJwvgDXvGYy6vxFH3Mk2FguPmFWP/CCLAuUee+r7E=
-golang.conradwood.net/apis/email v1.1.1440 h1:v+OKgLsYX3X+cCSYdlFEO/wN6la3yk0o+T+y0lj/M4A=
+golang.conradwood.net/apis/email v1.1.1440 h1:SqO0vf48uUeTqcY32qAbPzLcof2c7jBMyyIU9fFcdhI=
 golang.conradwood.net/apis/email v1.1.1440/go.mod h1:hpCMWabmuEPK7+J0hyqciamSvrLFfNJb+m7lRr9H374=
 golang.conradwood.net/apis/errorlogger v1.1.1433 h1:JNDyf3KMezzTB5GkU6Z+QVuvfno9VqnM6a3PKYc460M=
 golang.conradwood.net/apis/errorlogger v1.1.1433/go.mod h1:+eKYK50e04sTKr9qD9U44eztaeMSafHkzfjejBdMaqw=
@@ -237,7 +237,7 @@ golang.conradwood.net/apis/framework v1.1.1433/go.mod h1:aakclkFxoK6Rwfb6wWbfyCP
 golang.conradwood.net/apis/h2gproxy v1.1.1440 h1:kiBk0IZMFRlJA1TAkngFYve/qE/ZYQ5IlCOwji3laBo=
 golang.conradwood.net/apis/h2gproxy v1.1.1440/go.mod h1:/QxwL6QrsXr3qKABVL8hUgrpcmw5IvTpEajHhm5/c0c=
 golang.conradwood.net/apis/logservice v1.1.1433/go.mod h1:lHKq9Oj6vUE77MOwAsk/zqTvfuJw3i0FEkhAz4w7I4c=
-golang.conradwood.net/apis/objectstore v1.1.1433 h1:bitkcIwIXskmtjqeo4KRnOk3o2vt+GBazQAeOEiYHKM=
+golang.conradwood.net/apis/objectstore v1.1.1433 h1:4pEx3ZLS04GcHicXYirSkJtO5LCmQSiEqDtp0iqw1wg=
 golang.conradwood.net/apis/objectstore v1.1.1433/go.mod h1:e2yf47IrPI8nSmbDODyI1zvhtP/f22VWK32GvFZgYjU=
 golang.conradwood.net/apis/registry v1.1.1433 h1:DexHtThLyXkPjLKmQsp5lQMpbXmqcfGKhNiCVntXxVs=
 golang.conradwood.net/apis/registry v1.1.1433/go.mod h1:p4jF77DwFYWYQdpgzxHWvPi3Zlg1PiWqV792OOkSN+o=
