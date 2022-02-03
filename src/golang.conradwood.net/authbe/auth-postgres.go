@@ -962,7 +962,8 @@ func table_exists(tname string) bool {
 
 func delete_prober_user_loop() {
 	for {
-		utils.RandomStall(60)
+		n := utils.RandomInt(30)
+		time.Sleep(time.Duration(n) * time.Second)
 		ctx := context.Background()
 		users, err := userdb.ByEmail(ctx, TEST_USER_EMAIL)
 		if err != nil {
