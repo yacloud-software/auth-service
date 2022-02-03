@@ -638,6 +638,7 @@ func (a *PostgresAuthenticator) createUser(ctx context.Context, user *pb.User) e
 
 	// new codepath:
 	if user.Email == "prober_user_foo_bar@conradwood.net" {
+
 	}
 
 	// old codepath:
