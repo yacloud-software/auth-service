@@ -148,10 +148,10 @@ func (a *DBSudoStatus) ByID(ctx context.Context, p uint64) (*savepb.SudoStatus, 
 		return nil, a.Error(ctx, qn, fmt.Errorf("ByID: error scanning (%s)", e))
 	}
 	if len(l) == 0 {
-		return nil, a.Error(ctx, qn, fmt.Errorf("No SudoStatus with id %d", p))
+		return nil, a.Error(ctx, qn, fmt.Errorf("No SudoStatus with id %v", p))
 	}
 	if len(l) != 1 {
-		return nil, a.Error(ctx, qn, fmt.Errorf("Multiple (%d) SudoStatus with id %d", len(l), p))
+		return nil, a.Error(ctx, qn, fmt.Errorf("Multiple (%d) SudoStatus with id %v", len(l), p))
 	}
 	return l[0], nil
 }

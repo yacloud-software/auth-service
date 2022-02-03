@@ -3,6 +3,7 @@ module golang.conradwood.net/yasudo
 go 1.17
 
 replace golang.conradwood.net/authbe => ../../golang.conradwood.net/authbe
+
 replace golang.conradwood.net/apis/auth => ../../golang.conradwood.net/apis/auth
 
 replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
@@ -23,16 +24,16 @@ require (
 	github.com/prometheus/common v0.32.1 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
 	golang.conradwood.net/apis/autodeployer v1.1.1440 // indirect
-	golang.conradwood.net/apis/common v1.1.1440 // indirect
+	golang.conradwood.net/apis/common v1.1.1564 // indirect
 	golang.conradwood.net/apis/deploymonkey v1.1.1440 // indirect
 	golang.conradwood.net/apis/framework v1.1.1440 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.1440 // indirect
 	golang.conradwood.net/apis/registry v1.1.1440 // indirect
 	golang.conradwood.net/apis/rpcinterceptor v1.1.1440 // indirect
-	golang.org/x/net v0.0.0-20211209124913-491a49abca63 // indirect
-	golang.org/x/sys v0.0.0-20211210111614-af8b64212486 // indirect
+	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
+	golang.org/x/sys v0.0.0-20220128215802-99c3d69c2c27 // indirect
 	golang.org/x/text v0.3.7 // indirect
-	google.golang.org/genproto v0.0.0-20211208223120-3a66f561d7aa // indirect
-	google.golang.org/grpc v1.42.0 // indirect
+	google.golang.org/genproto v0.0.0-20220202230416-2a053f022f0d // indirect
+	google.golang.org/grpc v1.44.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 )

@@ -155,10 +155,10 @@ func (a *DBUser) ByID(ctx context.Context, p string) (*savepb.User, error) {
 		return nil, a.Error(ctx, qn, fmt.Errorf("ByID: error scanning (%s)", e))
 	}
 	if len(l) == 0 {
-		return nil, a.Error(ctx, qn, fmt.Errorf("No User with id %d", p))
+		return nil, a.Error(ctx, qn, fmt.Errorf("No User with id %v", p))
 	}
 	if len(l) != 1 {
-		return nil, a.Error(ctx, qn, fmt.Errorf("Multiple (%d) User with id %d", len(l), p))
+		return nil, a.Error(ctx, qn, fmt.Errorf("Multiple (%d) User with id %v", len(l), p))
 	}
 	return l[0], nil
 }

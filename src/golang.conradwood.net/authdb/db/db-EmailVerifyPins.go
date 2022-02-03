@@ -149,10 +149,10 @@ func (a *DBEmailVerifyPins) ByID(ctx context.Context, p uint64) (*savepb.EmailVe
 		return nil, a.Error(ctx, qn, fmt.Errorf("ByID: error scanning (%s)", e))
 	}
 	if len(l) == 0 {
-		return nil, a.Error(ctx, qn, fmt.Errorf("No EmailVerifyPins with id %d", p))
+		return nil, a.Error(ctx, qn, fmt.Errorf("No EmailVerifyPins with id %v", p))
 	}
 	if len(l) != 1 {
-		return nil, a.Error(ctx, qn, fmt.Errorf("Multiple (%d) EmailVerifyPins with id %d", len(l), p))
+		return nil, a.Error(ctx, qn, fmt.Errorf("Multiple (%d) EmailVerifyPins with id %v", len(l), p))
 	}
 	return l[0], nil
 }
