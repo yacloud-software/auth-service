@@ -3,6 +3,7 @@ module golang.conradwood.net/auth-service
 go 1.17
 
 replace golang.conradwood.net/authbe => ../../golang.conradwood.net/authbe
+replace golang.conradwood.net/apis/auth => ../../golang.conradwood.net/apis/auth
 
 replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 

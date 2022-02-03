@@ -22,6 +22,8 @@ import (
 )
 
 const (
+	TEST_USER_ID               = 2 // this user will be overwritten each time it is created
+	TEST_USER_EMAIL            = "prober_user_foo_bar@conradwood.net"
 	INTERNAL_USER_TOKEN_DOMAIN = "token.yacloud.eu"
 	DEFAULTLIFETIMESECS        = 60 * 60 * 10
 	SERVICELIFETIMESECS        = 60 * 60 * 24 * 365 * 10
@@ -36,6 +38,7 @@ var (
 	tokendb              *db.DBUserTokens
 	orgdb                *db.DBOrganisation
 	lorggroupdb          *db.DBLinkGroupOrganisation
+	userdb               *db.DBUser
 	create_user_services = flag.String("root_services", "", "list services that are allowed to create users")
 	accessCounter        = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
@@ -56,6 +59,7 @@ func (a *PostgresAuthenticator) Start() error {
 		return err
 	}
 	psql = dbx
+	userdb = db.NewDBUser(psql)
 	sudoers = db.NewDBSudoStatus(psql)
 	groups = db.NewDBGroupDB(psql)
 	remoteuserdb = db.NewDBRemoteUserDetail(psql)
@@ -115,6 +119,7 @@ ALTER TABLE ONLY user_groups ADD CONSTRAINT user_groups_user_id_fkey FOREIGN KEY
 		orgdb.SaveWithID(ctx, &pb.Organisation{ID: 1, Name: "Individual"})
 	}
 	go pg_expirer()
+	go delete_prober_user_loop()
 	return nil
 }
 
@@ -635,25 +640,32 @@ func (a *PostgresAuthenticator) createUser(ctx context.Context, user *pb.User) e
 		return fmt.Errorf("(createuser) invalid organisation id (%s)", err)
 	}
 	pw := string(bc)
-
+	fmt.Printf("Creating user with email \"%s\"\n", user.Email)
+	now := uint32(time.Now().Unix())
 	// new codepath:
-	if user.Email == "prober_user_foo_bar@conradwood.net" {
-
-	}
-
-	// old codepath:
-	rid, err := db.QueryContext(ctx, "create_user", "insert into users (passwd,email,firstname,lastname,abbrev,active,serviceaccount,emailverified,organisationid) values ($1,$2,$3,$4,$5,$6,$7,$8,$9) returning id", pw, user.Email, user.FirstName, user.LastName, user.Abbrev, user.Active, user.ServiceAccount, user.EmailVerified, orgid)
-	if err != nil {
-		return err
-	}
-	if !rid.Next() {
+	if user.Email == TEST_USER_EMAIL {
+		user.Created = now
+		user.ID = fmt.Sprintf("%d", TEST_USER_ID)
+		err := userdb.SaveWithID(ctx, user)
+		if err != nil {
+			fmt.Printf("Failed to create user: %s\n", utils.ErrorString(err))
+			return err
+		}
+	} else {
+		// old codepath:
+		rid, err := db.QueryContext(ctx, "create_user", "insert into users (passwd,email,firstname,lastname,abbrev,active,serviceaccount,emailverified,organisationid) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) returning id", pw, user.Email, user.FirstName, user.LastName, user.Abbrev, user.Active, user.ServiceAccount, user.EmailVerified, orgid, now)
+		if err != nil {
+			return err
+		}
+		if !rid.Next() {
+			rid.Close()
+			return fmt.Errorf("user created, but no ID!")
+		}
+		err = rid.Scan(&user.ID)
 		rid.Close()
-		return fmt.Errorf("user created, but no ID!")
-	}
-	err = rid.Scan(&user.ID)
-	rid.Close()
-	if err != nil {
-		return fmt.Errorf("error scanning newly created user id: %s\n", err)
+		if err != nil {
+			return fmt.Errorf("error scanning newly created user id: %s\n", err)
+		}
 	}
 	err = a.SetGroups(ctx, user)
 	if err != nil {
@@ -946,4 +958,36 @@ func table_exists(tname string) bool {
 	}
 	fmt.Printf("Table %s does not exist yet\n", tname)
 	return false
+}
+
+func delete_prober_user_loop() {
+	for {
+		utils.RandomStall(60)
+		ctx := context.Background()
+		users, err := userdb.ByEmail(ctx, TEST_USER_EMAIL)
+		if err != nil {
+			fmt.Printf("test_user_email cleaner: unable to query for test_user_email: %s\n", utils.ErrorString(err))
+			continue
+		}
+		if len(users) == 0 {
+			continue
+		}
+		cutoff := uint32(time.Now().Add(0 - time.Duration(90)*time.Second).Unix())
+		for _, u := range users {
+			if u.Created > cutoff {
+				continue
+			}
+			if u.ID != fmt.Sprintf("%d", TEST_USER_ID) {
+				fmt.Printf("test_user_email_cleaner: Not deleting user \"%s\" - expected userid %i\n", u.ID, TEST_USER_ID)
+				continue
+			}
+			err = userdb.DeleteByID(ctx, u.ID)
+			if err != nil {
+				fmt.Printf("test_user_email_cleaner: failed to delete user: %s\n", utils.ErrorString(err))
+				continue
+			}
+			fmt.Printf("test_user_email_cleaner: deleted user #%s\n", u.ID)
+
+		}
+	}
 }
