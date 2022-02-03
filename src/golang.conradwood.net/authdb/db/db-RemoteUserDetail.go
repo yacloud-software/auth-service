@@ -37,6 +37,11 @@ import (
 	"fmt"
 	savepb "golang.conradwood.net/apis/auth"
 	"golang.conradwood.net/go-easyops/sql"
+	"os"
+)
+
+var (
+	default_def_DBRemoteUserDetail *DBRemoteUserDetail
 )
 
 type DBRemoteUserDetail struct {
@@ -45,6 +50,25 @@ type DBRemoteUserDetail struct {
 	SQLArchivetablename string
 }
 
+func DefaultDBRemoteUserDetail() *DBRemoteUserDetail {
+	if default_def_DBRemoteUserDetail != nil {
+		return default_def_DBRemoteUserDetail
+	}
+	psql, err := sql.Open()
+	if err != nil {
+		fmt.Printf("Failed to open database: %s\n", err)
+		os.Exit(10)
+	}
+	res := NewDBRemoteUserDetail(psql)
+	ctx := context.Background()
+	err = res.CreateTable(ctx)
+	if err != nil {
+		fmt.Printf("Failed to create table: %s\n", err)
+		os.Exit(10)
+	}
+	default_def_DBRemoteUserDetail = res
+	return res
+}
 func NewDBRemoteUserDetail(db *sql.DB) *DBRemoteUserDetail {
 	foo := DBRemoteUserDetail{DB: db}
 	foo.SQLTablename = "remoteuserdetail"

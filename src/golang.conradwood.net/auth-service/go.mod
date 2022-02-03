@@ -25,7 +25,7 @@ require (
 	github.com/prometheus/common v0.32.1 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
 	golang.conradwood.net/apis/autodeployer v1.1.1440 // indirect
-	golang.conradwood.net/apis/common v1.1.1440 // indirect
+	golang.conradwood.net/apis/common v1.1.1561 // indirect
 	golang.conradwood.net/apis/deploymonkey v1.1.1440 // indirect
 	golang.conradwood.net/apis/echoservice v1.1.1440 // indirect
 	golang.conradwood.net/apis/email v1.1.1440 // indirect

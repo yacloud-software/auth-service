@@ -36,6 +36,11 @@ import (
 	"fmt"
 	savepb "golang.conradwood.net/apis/auth"
 	"golang.conradwood.net/go-easyops/sql"
+	"os"
+)
+
+var (
+	default_def_DBEmailVerifyPins *DBEmailVerifyPins
 )
 
 type DBEmailVerifyPins struct {
@@ -44,6 +49,25 @@ type DBEmailVerifyPins struct {
 	SQLArchivetablename string
 }
 
+func DefaultDBEmailVerifyPins() *DBEmailVerifyPins {
+	if default_def_DBEmailVerifyPins != nil {
+		return default_def_DBEmailVerifyPins
+	}
+	psql, err := sql.Open()
+	if err != nil {
+		fmt.Printf("Failed to open database: %s\n", err)
+		os.Exit(10)
+	}
+	res := NewDBEmailVerifyPins(psql)
+	ctx := context.Background()
+	err = res.CreateTable(ctx)
+	if err != nil {
+		fmt.Printf("Failed to create table: %s\n", err)
+		os.Exit(10)
+	}
+	default_def_DBEmailVerifyPins = res
+	return res
+}
 func NewDBEmailVerifyPins(db *sql.DB) *DBEmailVerifyPins {
 	foo := DBEmailVerifyPins{DB: db}
 	foo.SQLTablename = "emailverifypins"

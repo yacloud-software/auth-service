@@ -225,6 +225,8 @@ golang.conradwood.net/apis/autodeployer v1.1.1440/go.mod h1:1N49+5L0Lvty7l+HOnN/
 golang.conradwood.net/apis/common v1.1.1433/go.mod h1:82LAi77ejEi9771su5wf1GFmBcy78TnUb/lpJZutmzo=
 golang.conradwood.net/apis/common v1.1.1440 h1:1998tiX3r55Ig/g5tqAQtuKjehBtcT1+htuUIlWr0fc=
 golang.conradwood.net/apis/common v1.1.1440/go.mod h1:82LAi77ejEi9771su5wf1GFmBcy78TnUb/lpJZutmzo=
+golang.conradwood.net/apis/common v1.1.1561 h1:Rj3oSUuEUh+2uWYx35ew8zOfEo9da+7NIVlREb6M+gA=
+golang.conradwood.net/apis/common v1.1.1561/go.mod h1:82LAi77ejEi9771su5wf1GFmBcy78TnUb/lpJZutmzo=
 golang.conradwood.net/apis/deploymonkey v1.1.1433/go.mod h1:D5eGV5SK8VPs9ZaAxrLphRXsZMW08S1KnV0PtMsr9hc=
 golang.conradwood.net/apis/deploymonkey v1.1.1440 h1:W4fYe+Uzomusxvf7zJ6Sda3yCmFhizkjWJ+0YQczqGE=
 golang.conradwood.net/apis/deploymonkey v1.1.1440/go.mod h1:D5eGV5SK8VPs9ZaAxrLphRXsZMW08S1KnV0PtMsr9hc=

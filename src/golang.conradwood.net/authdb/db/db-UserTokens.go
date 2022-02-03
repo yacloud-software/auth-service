@@ -37,6 +37,11 @@ import (
 	"fmt"
 	savepb "golang.conradwood.net/apis/auth"
 	"golang.conradwood.net/go-easyops/sql"
+	"os"
+)
+
+var (
+	default_def_DBUserTokens *DBUserTokens
 )
 
 type DBUserTokens struct {
@@ -45,6 +50,25 @@ type DBUserTokens struct {
 	SQLArchivetablename string
 }
 
+func DefaultDBUserTokens() *DBUserTokens {
+	if default_def_DBUserTokens != nil {
+		return default_def_DBUserTokens
+	}
+	psql, err := sql.Open()
+	if err != nil {
+		fmt.Printf("Failed to open database: %s\n", err)
+		os.Exit(10)
+	}
+	res := NewDBUserTokens(psql)
+	ctx := context.Background()
+	err = res.CreateTable(ctx)
+	if err != nil {
+		fmt.Printf("Failed to create table: %s\n", err)
+		os.Exit(10)
+	}
+	default_def_DBUserTokens = res
+	return res
+}
 func NewDBUserTokens(db *sql.DB) *DBUserTokens {
 	foo := DBUserTokens{DB: db}
 	foo.SQLTablename = "tokens"

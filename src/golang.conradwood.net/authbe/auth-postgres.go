@@ -122,6 +122,13 @@ func GetRootServices() []string {
 	return strings.Split(*create_user_services, ",")
 }
 func (a *PostgresAuthenticator) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.User, error) {
+	u, err := a.CreateUserWithErr(ctx, req)
+	if err != nil {
+		send_notification("failed to create user \"%s\": %s", req.Email, utils.ErrorString(err))
+	}
+	return u, err
+}
+func (a *PostgresAuthenticator) CreateUserWithErr(ctx context.Context, req *pb.CreateUserRequest) (*pb.User, error) {
 	e := errors.NeedServiceOrRoot(ctx, GetRootServices())
 	if e != nil {
 		return nil, e
@@ -628,6 +635,12 @@ func (a *PostgresAuthenticator) createUser(ctx context.Context, user *pb.User) e
 		return fmt.Errorf("(createuser) invalid organisation id (%s)", err)
 	}
 	pw := string(bc)
+
+	// new codepath:
+	if user.Email == "prober_user_foo_bar@conradwood.net" {
+	}
+
+	// old codepath:
 	rid, err := db.QueryContext(ctx, "create_user", "insert into users (passwd,email,firstname,lastname,abbrev,active,serviceaccount,emailverified,organisationid) values ($1,$2,$3,$4,$5,$6,$7,$8,$9) returning id", pw, user.Email, user.FirstName, user.LastName, user.Abbrev, user.Active, user.ServiceAccount, user.EmailVerified, orgid)
 	if err != nil {
 		return err

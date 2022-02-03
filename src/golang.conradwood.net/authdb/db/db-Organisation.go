@@ -33,6 +33,11 @@ import (
 	"fmt"
 	savepb "golang.conradwood.net/apis/auth"
 	"golang.conradwood.net/go-easyops/sql"
+	"os"
+)
+
+var (
+	default_def_DBOrganisation *DBOrganisation
 )
 
 type DBOrganisation struct {
@@ -41,6 +46,25 @@ type DBOrganisation struct {
 	SQLArchivetablename string
 }
 
+func DefaultDBOrganisation() *DBOrganisation {
+	if default_def_DBOrganisation != nil {
+		return default_def_DBOrganisation
+	}
+	psql, err := sql.Open()
+	if err != nil {
+		fmt.Printf("Failed to open database: %s\n", err)
+		os.Exit(10)
+	}
+	res := NewDBOrganisation(psql)
+	ctx := context.Background()
+	err = res.CreateTable(ctx)
+	if err != nil {
+		fmt.Printf("Failed to create table: %s\n", err)
+		os.Exit(10)
+	}
+	default_def_DBOrganisation = res
+	return res
+}
 func NewDBOrganisation(db *sql.DB) *DBOrganisation {
 	foo := DBOrganisation{DB: db}
 	foo.SQLTablename = "organisation"

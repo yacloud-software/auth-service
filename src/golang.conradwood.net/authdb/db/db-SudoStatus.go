@@ -35,6 +35,11 @@ import (
 	"fmt"
 	savepb "golang.conradwood.net/apis/auth"
 	"golang.conradwood.net/go-easyops/sql"
+	"os"
+)
+
+var (
+	default_def_DBSudoStatus *DBSudoStatus
 )
 
 type DBSudoStatus struct {
@@ -43,6 +48,25 @@ type DBSudoStatus struct {
 	SQLArchivetablename string
 }
 
+func DefaultDBSudoStatus() *DBSudoStatus {
+	if default_def_DBSudoStatus != nil {
+		return default_def_DBSudoStatus
+	}
+	psql, err := sql.Open()
+	if err != nil {
+		fmt.Printf("Failed to open database: %s\n", err)
+		os.Exit(10)
+	}
+	res := NewDBSudoStatus(psql)
+	ctx := context.Background()
+	err = res.CreateTable(ctx)
+	if err != nil {
+		fmt.Printf("Failed to create table: %s\n", err)
+		os.Exit(10)
+	}
+	default_def_DBSudoStatus = res
+	return res
+}
 func NewDBSudoStatus(db *sql.DB) *DBSudoStatus {
 	foo := DBSudoStatus{DB: db}
 	foo.SQLTablename = "sudostatus"

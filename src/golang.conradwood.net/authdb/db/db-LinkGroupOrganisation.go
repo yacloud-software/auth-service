@@ -34,6 +34,11 @@ import (
 	"fmt"
 	savepb "golang.conradwood.net/apis/auth"
 	"golang.conradwood.net/go-easyops/sql"
+	"os"
+)
+
+var (
+	default_def_DBLinkGroupOrganisation *DBLinkGroupOrganisation
 )
 
 type DBLinkGroupOrganisation struct {
@@ -42,6 +47,25 @@ type DBLinkGroupOrganisation struct {
 	SQLArchivetablename string
 }
 
+func DefaultDBLinkGroupOrganisation() *DBLinkGroupOrganisation {
+	if default_def_DBLinkGroupOrganisation != nil {
+		return default_def_DBLinkGroupOrganisation
+	}
+	psql, err := sql.Open()
+	if err != nil {
+		fmt.Printf("Failed to open database: %s\n", err)
+		os.Exit(10)
+	}
+	res := NewDBLinkGroupOrganisation(psql)
+	ctx := context.Background()
+	err = res.CreateTable(ctx)
+	if err != nil {
+		fmt.Printf("Failed to create table: %s\n", err)
+		os.Exit(10)
+	}
+	default_def_DBLinkGroupOrganisation = res
+	return res
+}
 func NewDBLinkGroupOrganisation(db *sql.DB) *DBLinkGroupOrganisation {
 	foo := DBLinkGroupOrganisation{DB: db}
 	foo.SQLTablename = "linkgrouporganisation"

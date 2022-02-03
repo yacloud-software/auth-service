@@ -34,6 +34,11 @@ import (
 	"fmt"
 	savepb "golang.conradwood.net/apis/auth"
 	"golang.conradwood.net/go-easyops/sql"
+	"os"
+)
+
+var (
+	default_def_DBGroupDB *DBGroupDB
 )
 
 type DBGroupDB struct {
@@ -42,6 +47,25 @@ type DBGroupDB struct {
 	SQLArchivetablename string
 }
 
+func DefaultDBGroupDB() *DBGroupDB {
+	if default_def_DBGroupDB != nil {
+		return default_def_DBGroupDB
+	}
+	psql, err := sql.Open()
+	if err != nil {
+		fmt.Printf("Failed to open database: %s\n", err)
+		os.Exit(10)
+	}
+	res := NewDBGroupDB(psql)
+	ctx := context.Background()
+	err = res.CreateTable(ctx)
+	if err != nil {
+		fmt.Printf("Failed to create table: %s\n", err)
+		os.Exit(10)
+	}
+	default_def_DBGroupDB = res
+	return res
+}
 func NewDBGroupDB(db *sql.DB) *DBGroupDB {
 	foo := DBGroupDB{DB: db}
 	foo.SQLTablename = "groups"
