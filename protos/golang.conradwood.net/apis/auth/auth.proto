@@ -50,10 +50,10 @@ message User {
    0:not signed, otherwise version:
    Version 2: ed25519 over ID, Email, FirstName, LastName, Active,Abbrev, GroupIDs, ServiceAccount, EmailVerified
   */
-  uint32 SignatureVersion = 11 [common.sql_ignore="true"];
-  uint32 SignedAt = 12 [common.sql_ignore="true"];;     // timestamp, UTC when it was signed
-  bytes SignatureID = 13 [common.sql_ignore="true"];;   // auth service signature over ID & SignedAt
-  bytes SignatureFull = 14 [common.sql_ignore="true"];; // auth service signature over [see version]
+  uint32 SignatureVersion = 11 [(common.sql_ignore)="true"];
+  uint32 SignedAt = 12 [(common.sql_ignore)="true"];;     // timestamp, UTC when it was signed
+  bytes SignatureID = 13 [(common.sql_ignore)="true"];;   // auth service signature over ID & SignedAt
+  bytes SignatureFull = 14 [(common.sql_ignore)="true"];; // auth service signature over [see version]
   string OrganisationID = 15;// optional: an organisation this user belongs to
 }
 message LinkGroupOrganisation {
