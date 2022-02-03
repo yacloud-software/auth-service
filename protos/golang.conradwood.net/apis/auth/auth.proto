@@ -40,7 +40,7 @@ message User {
   string Email = 2;
   string FirstName = 3;
   string LastName = 4;
-  string Password = 5; // only set when creating users
+  string Password = 5 [(common.sql_name)="passwd"]; // only set when creating users
   repeated Group Groups = 6;
   string Abbrev = 7;       // e.g. "cnw"
   bool Active = 8;         // is user active
@@ -55,6 +55,7 @@ message User {
   bytes SignatureID = 13 [(common.sql_ignore)="true"];;   // auth service signature over ID & SignedAt
   bytes SignatureFull = 14 [(common.sql_ignore)="true"];; // auth service signature over [see version]
   string OrganisationID = 15;// optional: an organisation this user belongs to
+  uint32 Created=16; // created timestamp
 }
 message LinkGroupOrganisation {
   uint64 ID=1;
