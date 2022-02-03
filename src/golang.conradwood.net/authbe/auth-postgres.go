@@ -979,7 +979,7 @@ func delete_prober_user_loop() {
 				continue
 			}
 			if u.ID != fmt.Sprintf("%d", TEST_USER_ID) {
-				fmt.Printf("test_user_email_cleaner: Not deleting user \"%s\" - expected userid %i\n", u.ID, TEST_USER_ID)
+				fmt.Printf("test_user_email_cleaner: Not deleting user \"%s\" - expected userid %d\n", u.ID, TEST_USER_ID)
 				continue
 			}
 			err = userdb.DeleteByID(ctx, u.ID)
