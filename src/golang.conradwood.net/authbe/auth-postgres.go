@@ -203,6 +203,7 @@ func (a *PostgresAuthenticator) CreateService(ctx context.Context, req *pb.Creat
 	}
 	err := a.createUser(ctx, res.User)
 	if err != nil {
+		send_notification("failed to create service \"%s\": %s", res.User.Email, utils.ErrorString(err))
 		return nil, err
 	}
 
