@@ -643,8 +643,12 @@ func (a *PostgresAuthenticator) createUser(ctx context.Context, user *pb.User) e
 	user.Created = now
 	user.OrganisationID = fmt.Sprintf("%d", orgid)
 	user.Password = pw
-	user.ID = fmt.Sprintf("%d", TEST_USER_ID)
-	err = userdb.SaveWithID(ctx, user)
+	if user.Email == TEST_USER_EMAIL {
+		user.ID = fmt.Sprintf("%d", TEST_USER_ID)
+		err = userdb.SaveWithID(ctx, user)
+	} else {
+		_, err = userdb.Save(ctx, user)
+	}
 	if err != nil {
 		fmt.Printf("Failed to create user: %s\n", utils.ErrorString(err))
 		return err
