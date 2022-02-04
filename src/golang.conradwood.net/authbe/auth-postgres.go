@@ -623,10 +623,6 @@ func getorgidforcreate(ctx context.Context, user *pb.User) (int, error) {
 }
 func (a *PostgresAuthenticator) createUser(ctx context.Context, user *pb.User) error {
 	send_notification("Creating user \"%s\"", user.Email)
-	db, err := sql.Open()
-	if err != nil {
-		return err
-	}
 	if user.Password == "" {
 		user.Password = utils.RandomString(12)
 	}
@@ -642,31 +638,38 @@ func (a *PostgresAuthenticator) createUser(ctx context.Context, user *pb.User) e
 	pw := string(bc)
 	fmt.Printf("Creating user with email \"%s\"\n", user.Email)
 	now := uint32(time.Now().Unix())
-	// new codepath:
-	if user.Email == TEST_USER_EMAIL {
-		user.Created = now
-		user.ID = fmt.Sprintf("%d", TEST_USER_ID)
-		err := userdb.SaveWithID(ctx, user)
-		if err != nil {
-			fmt.Printf("Failed to create user: %s\n", utils.ErrorString(err))
-			return err
-		}
-	} else {
-		// old codepath:
-		rid, err := db.QueryContext(ctx, "create_user", "insert into users (passwd,email,firstname,lastname,abbrev,active,serviceaccount,emailverified,organisationid) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) returning id", pw, user.Email, user.FirstName, user.LastName, user.Abbrev, user.Active, user.ServiceAccount, user.EmailVerified, orgid, now)
-		if err != nil {
-			return err
-		}
-		if !rid.Next() {
-			rid.Close()
-			return fmt.Errorf("user created, but no ID!")
-		}
-		err = rid.Scan(&user.ID)
-		rid.Close()
-		if err != nil {
-			return fmt.Errorf("error scanning newly created user id: %s\n", err)
-		}
+
+	user.Created = now
+	user.OrganisationID = fmt.Sprintf("%d", orgid)
+	user.Password = pw
+	user.ID = fmt.Sprintf("%d", TEST_USER_ID)
+	err = userdb.SaveWithID(ctx, user)
+	if err != nil {
+		fmt.Printf("Failed to create user: %s\n", utils.ErrorString(err))
+		return err
 	}
+	/*
+				// old codepath:
+		db, err := sql.Open()
+		if err != nil {
+			return err
+		}
+
+				rid, err := db.QueryContext(ctx, "create_user", "insert into users (passwd,email,firstname,lastname,abbrev,active,serviceaccount,emailverified,organisationid) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) returning id", pw, user.Email, user.FirstName, user.LastName, user.Abbrev, user.Active, user.ServiceAccount, user.EmailVerified, orgid, now)
+				if err != nil {
+					return err
+				}
+				if !rid.Next() {
+					rid.Close()
+					return fmt.Errorf("user created, but no ID!")
+				}
+				err = rid.Scan(&user.ID)
+				rid.Close()
+				if err != nil {
+					return fmt.Errorf("error scanning newly created user id: %s\n", err)
+				}
+			}
+	*/
 	err = a.SetGroups(ctx, user)
 	if err != nil {
 		return err
