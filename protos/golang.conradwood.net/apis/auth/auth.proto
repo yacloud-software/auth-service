@@ -265,7 +265,15 @@ service AuthManagerService {
   rpc GetByAbbreviation(ByAbbrevRequest) returns (User);
   // get all users, root only, very privileged call
   rpc GetAllUsers(common.Void) returns (UserList);
+  // create a 30-minute session token (which may or may not be linked to a user)
+  rpc CreateSession(common.Void) returns (SessionToken);
+  // "keep-alive" for a session token
+  rpc KeepAliveSession(SessionToken) returns (SessionToken);
 }
+message SessionToken {
+  string Token=1;
+}
+
 message ByAbbrevRequest {
   string Abbrev=1;
 }
