@@ -12,21 +12,21 @@ package db
 
 /*
  postgres:
- create sequence users_seq;
+ create sequence persistsession_seq;
 
 Main Table:
 
- CREATE TABLE users (id integer primary key default nextval('users_seq'),token text not null  unique  ,userid text not null  ,created integer not null  );
+ CREATE TABLE persistsession (id integer primary key default nextval('persistsession_seq'),token text not null  unique  ,userid text not null  ,created integer not null  );
 
 Alter statements:
-ALTER TABLE users ADD COLUMN token text not null unique  default '';
-ALTER TABLE users ADD COLUMN userid text not null default '';
-ALTER TABLE users ADD COLUMN created integer not null default 0;
+ALTER TABLE persistsession ADD COLUMN token text not null unique  default '';
+ALTER TABLE persistsession ADD COLUMN userid text not null default '';
+ALTER TABLE persistsession ADD COLUMN created integer not null default 0;
 
 
 Archive Table: (structs can be moved from main to archive using Archive() function)
 
- CREATE TABLE users_archive (id integer unique not null,token text not null,userid text not null,created integer not null);
+ CREATE TABLE persistsession_archive (id integer unique not null,token text not null,userid text not null,created integer not null);
 */
 
 import (
@@ -69,8 +69,8 @@ func DefaultDBPersistSession() *DBPersistSession {
 }
 func NewDBPersistSession(db *sql.DB) *DBPersistSession {
 	foo := DBPersistSession{DB: db}
-	foo.SQLTablename = "users"
-	foo.SQLArchivetablename = "users_archive"
+	foo.SQLTablename = "persistsession"
+	foo.SQLArchivetablename = "persistsession_archive"
 	return &foo
 }
 
