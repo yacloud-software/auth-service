@@ -27,6 +27,13 @@ message Session {
   string Token=1;
 }
 
+message PersistSession {
+  uint64 ID=1;
+  string Token=2 [(common.sql_unique)="true"];
+  string UserID=3;
+  uint32 Created=4;
+}
+
 message KeepAliveSessionRequest {
   string Token=1;
   SignedUser User=2; // optional - if provided, session will be linked to a given user
