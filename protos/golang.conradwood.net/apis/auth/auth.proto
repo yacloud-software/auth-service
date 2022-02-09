@@ -27,8 +27,9 @@ message Session {
   string Token=1;
 }
 
-message SessionToken {
+message KeepAliveSessionRequest {
   string Token=1;
+  SignedUser User=2; // optional - if provided, session will be linked to a given user
 }
 
 /*
@@ -281,7 +282,7 @@ service AuthManagerService {
   // create a 30-minute session token (which may or may not be linked to a user)
   rpc CreateSession(common.Void) returns (SignedSession);
   // "keep-alive" for a session token
-  rpc KeepAliveSession(SessionToken) returns (SignedSession);
+  rpc KeepAliveSession(KeepAliveSessionRequest) returns (SignedSession);
 }
 
 message ByAbbrevRequest {
