@@ -60,7 +60,7 @@ type Authenticator interface {
 	LogSomeoneOut(ctx context.Context, req *pb.ByIDRequest) (*pb.User, error)
 	GetByAbbreviation(ctx context.Context, req *pb.ByAbbrevRequest) (*pb.User, error)
 	GetAllUsers(ctx context.Context, req *common.Void) (*pb.UserList, error)
-	CreateSession(ctx context.Context, req *common.Void) (*pb.Session, error)
+	CreateSession(ctx context.Context, req *common.Void) (*pb.SignedSession, error)
 	KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.Session, error)
 }
 
