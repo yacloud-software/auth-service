@@ -61,7 +61,7 @@ type Authenticator interface {
 	GetByAbbreviation(ctx context.Context, req *pb.ByAbbrevRequest) (*pb.User, error)
 	GetAllUsers(ctx context.Context, req *common.Void) (*pb.UserList, error)
 	CreateSession(ctx context.Context, req *common.Void) (*pb.SignedSession, error)
-	KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.Session, error)
+	KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.SignedSession, error)
 }
 
 func ResponseToSignedResponse(a *pb.AuthResponse) (*pb.SignedAuthResponse, error) {

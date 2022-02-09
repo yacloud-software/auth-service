@@ -18,7 +18,13 @@ func (a *PostgresAuthenticator) CreateSession(ctx context.Context, req *common.V
 	signed := &pb.SignedSession{Session: b, Signature: s}
 	return signed, nil
 }
-func (a *PostgresAuthenticator) KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.Session, error) {
-	sess := utils.RandomString(128)
-	return &pb.Session{Token: sess}, nil
+func (a *PostgresAuthenticator) KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.SignedSession, error) {
+	sess := &pb.Session{Token: req.Token}
+	b, err := utils.MarshalBytes(sess)
+	if err != nil {
+		return nil, err
+	}
+	s := ed.Sign(signPrivateKey(), b)
+	signed := &pb.SignedSession{Session: b, Signature: s}
+	return signed, nil
 }

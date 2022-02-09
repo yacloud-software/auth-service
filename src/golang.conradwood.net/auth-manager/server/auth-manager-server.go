@@ -323,6 +323,6 @@ func (a *am) GetAllUsers(ctx context.Context, req *common.Void) (*pb.UserList, e
 func (a *am) CreateSession(ctx context.Context, req *common.Void) (*pb.SignedSession, error) {
 	return authBE.CreateSession(ctx, req)
 }
-func (a *am) KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.Session, error) {
+func (a *am) KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.SignedSession, error) {
 	return authBE.KeepAliveSession(ctx, req)
 }
