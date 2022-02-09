@@ -281,7 +281,7 @@ service AuthManagerService {
   // create a 30-minute session token (which may or may not be linked to a user)
   rpc CreateSession(common.Void) returns (SignedSession);
   // "keep-alive" for a session token
-  rpc KeepAliveSession(SessionToken) returns (Session);
+  rpc KeepAliveSession(SessionToken) returns (SignedSession);
 }
 
 message ByAbbrevRequest {
