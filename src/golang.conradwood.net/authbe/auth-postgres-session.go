@@ -12,23 +12,40 @@ import (
 	"time"
 )
 
+func sess_userid(suser *pb.SignedUser) string {
+	if suser == nil {
+		return ""
+	}
+	user := &pb.User{}
+	err := utils.UnmarshalBytes(suser.User, user)
+	if err != nil {
+		fmt.Printf("Invalid user: %s\n", err)
+		return ""
+	}
+	return user.ID
+
+}
 func GetSession(ctx context.Context, token string, suser *pb.SignedUser) (*pb.PersistSession, error) {
 	psa, err := db.DefaultDBPersistSession().ByToken(ctx, token)
 	if err != nil {
 		return nil, err
 	}
 	if len(psa) != 0 {
+		p := psa[0]
+		if p.UserID == "" && suser != nil {
+			u := sess_userid(suser)
+			if u != "" {
+				p.UserID = u
+				err = db.DefaultDBPersistSession().Update(ctx, p)
+				fmt.Printf("Linked session %s to user %s\n", token, p.UserID)
+				if err != nil {
+					fmt.Printf("Failed to update session: %s\n", err)
+				}
+			}
+		}
 		return psa[0], nil
 	}
-	u := ""
-	if suser != nil {
-		user := &pb.User{}
-		err = utils.UnmarshalBytes(suser.User, user)
-		if err != nil {
-			return nil, err
-		}
-		u = user.ID
-	}
+	u := sess_userid(suser)
 	ps := &pb.PersistSession{Token: token, UserID: u, Created: uint32(time.Now().Unix())}
 	_, err = db.DefaultDBPersistSession().Save(ctx, ps)
 	if err != nil {
