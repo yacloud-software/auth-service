@@ -23,6 +23,14 @@ message SignedSession {
   bytes Session=1;
   bytes Signature=2;
 }
+message Session {
+  string Token=1;
+}
+
+message SessionToken {
+  string Token=1;
+}
+
 /*
  * this message contains a serialised proto and the signature over the serialised proto
  * we are migrating towards this, as it allows us to update the proto in future without
@@ -271,16 +279,9 @@ service AuthManagerService {
   // get all users, root only, very privileged call
   rpc GetAllUsers(common.Void) returns (UserList);
   // create a 30-minute session token (which may or may not be linked to a user)
-  rpc CreateSession(common.Void) returns (Session);
+  rpc CreateSession(common.Void) returns (SignedSession);
   // "keep-alive" for a session token
   rpc KeepAliveSession(SessionToken) returns (Session);
-}
-message Session {
-  string Token=1;
-}
-
-message SessionToken {
-  string Token=1;
 }
 
 message ByAbbrevRequest {
