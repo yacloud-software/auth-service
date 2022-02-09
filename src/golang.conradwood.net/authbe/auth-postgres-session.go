@@ -7,11 +7,11 @@ import (
 	"golang.conradwood.net/go-easyops/utils"
 )
 
-func (a *PostgresAuthenticator) CreateSession(ctx context.Context, req *common.Void) (*pb.SessionToken, error) {
+func (a *PostgresAuthenticator) CreateSession(ctx context.Context, req *common.Void) (*pb.Session, error) {
 	sess := utils.RandomString(128)
-	return &pb.SessionToken{Token: sess}, nil
+	return &pb.Session{Token: sess}, nil
 }
-func (a *PostgresAuthenticator) KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.SessionToken, error) {
+func (a *PostgresAuthenticator) KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.Session, error) {
 	sess := utils.RandomString(128)
-	return &pb.SessionToken{Token: sess}, nil
+	return &pb.Session{Token: sess}, nil
 }

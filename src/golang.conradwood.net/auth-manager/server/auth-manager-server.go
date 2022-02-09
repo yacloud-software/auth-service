@@ -320,9 +320,9 @@ func (a *am) GetAllUsers(ctx context.Context, req *common.Void) (*pb.UserList, e
 	return authBE.GetAllUsers(ctx, req)
 }
 
-func (a *am) CreateSession(ctx context.Context, req *common.Void) (*pb.SessionToken, error) {
+func (a *am) CreateSession(ctx context.Context, req *common.Void) (*pb.Session, error) {
 	return authBE.CreateSession(ctx, req)
 }
-func (a *am) KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.SessionToken, error) {
+func (a *am) KeepAliveSession(ctx context.Context, req *pb.SessionToken) (*pb.Session, error) {
 	return authBE.KeepAliveSession(ctx, req)
 }
