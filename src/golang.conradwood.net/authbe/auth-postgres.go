@@ -981,7 +981,7 @@ func delete_prober_user_loop() {
 		if len(users) == 0 {
 			continue
 		}
-		cutoff := uint32(time.Now().Add(0 - time.Duration(90)*time.Second).Unix())
+		cutoff := uint32(time.Now().Add(0 - time.Duration(180)*time.Second).Unix())
 		for _, u := range users {
 			if u.Created > cutoff {
 				continue
