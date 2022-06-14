@@ -9,7 +9,6 @@ replace golang.conradwood.net/apis/auth => ../../golang.conradwood.net/apis/auth
 replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
-	golang.conradwood.net/apis/auth v1.1.1498
 	golang.conradwood.net/apis/common v1.1.1564
 	golang.conradwood.net/apis/email v1.1.1564
 	golang.conradwood.net/authbe v0.0.0-00010101000000-000000000000
