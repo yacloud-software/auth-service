@@ -12,7 +12,6 @@ require (
 )
 
 require (
-	golang.conradwood.net/go-easyops v0.1.13087 // indirect
 	golang.org/x/sys v0.0.0-20220808155132-1c4a2a72c664 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20220810155839-1856144b1d9c // indirect
