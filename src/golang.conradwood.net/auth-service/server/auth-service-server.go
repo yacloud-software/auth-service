@@ -14,11 +14,6 @@ import (
 var (
 	port   = flag.Int("port", 4998, "The server port")
 	authBE authbe.Authenticator
-	debug  = flag.Bool("debug", false, "enable debug mode")
-)
-
-const (
-	MAX_VALID_SECS = 2592000
 )
 
 /**************************************************

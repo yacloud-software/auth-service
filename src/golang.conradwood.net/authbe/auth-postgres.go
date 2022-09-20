@@ -879,9 +879,32 @@ func (a *PostgresAuthenticator) SignedGetUserByID(ctx context.Context, req *pb.B
 func (a *PostgresAuthenticator) SignedGetByPassword(ctx context.Context, req *pb.AuthenticatePasswordRequest) (*pb.SignedAuthResponse, error) {
 	r, err := a.GetByPassword(ctx, req)
 	if err != nil {
+		if *debug {
+			fmt.Printf("GetByPassword failure: %s\n", utils.ErrorString(err))
+		}
 		return nil, err
 	}
-	return ResponseToSignedResponse(r)
+	if r.User == nil {
+		if *debug {
+			fmt.Printf("GetByPassword did not return a user for \"%s\", password=\"%s\"\n", req.Email, req.Password)
+		}
+		return &pb.SignedAuthResponse{
+			Valid:         false,
+			PublicMessage: "access denied",
+			LogMessage:    fmt.Sprintf("could not get user \"%s\" with a password", req.Email),
+		}, nil
+	}
+	res, err := ResponseToSignedResponse(r)
+	if err != nil {
+		if *debug {
+			fmt.Printf("SignedGetByPassword failure for \"%s\": %s\n", req.Email, utils.ErrorString(err))
+		}
+		return nil, err
+	}
+	if res == nil {
+		panic("returning nil")
+	}
+	return res, nil
 }
 func (a *PostgresAuthenticator) SignedGetByToken(ctx context.Context, req *pb.AuthenticateTokenRequest) (*pb.SignedAuthResponse, error) {
 	r, err := a.GetByToken(ctx, req)

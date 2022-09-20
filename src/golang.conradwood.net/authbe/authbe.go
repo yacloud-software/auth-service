@@ -65,6 +65,9 @@ type Authenticator interface {
 }
 
 func ResponseToSignedResponse(a *pb.AuthResponse) (*pb.SignedAuthResponse, error) {
+	if a.User == nil {
+		return nil, fmt.Errorf("no user")
+	}
 	res := &pb.SignedAuthResponse{
 		Valid:         a.Valid,
 		PublicMessage: a.PublicMessage,
@@ -73,6 +76,9 @@ func ResponseToSignedResponse(a *pb.AuthResponse) (*pb.SignedAuthResponse, error
 	}
 	su, err := userToSignedUser(a.User)
 	if err != nil {
+		if *debug {
+			fmt.Printf("userToSignedUser failed: %s\n", err)
+		}
 		return nil, err
 	}
 	res.User = su
