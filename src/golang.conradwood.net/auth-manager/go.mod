@@ -14,7 +14,7 @@ require (
 	golang.conradwood.net/apis/email v1.1.1564
 	golang.conradwood.net/authbe v0.0.0-00010101000000-000000000000
 	golang.conradwood.net/authdb v0.0.0-00010101000000-000000000000
-	golang.conradwood.net/go-easyops v0.1.13087
+	golang.conradwood.net/go-easyops v0.1.13564
 	golang.org/x/crypto v0.0.0-20220131195533-30dcbda58838
 	google.golang.org/grpc v1.48.0
 )

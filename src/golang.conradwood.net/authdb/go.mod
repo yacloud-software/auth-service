@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	golang.conradwood.net/apis/auth v1.1.1787
-	golang.conradwood.net/go-easyops v0.1.13087
+	golang.conradwood.net/go-easyops v0.1.13564
 )
 
 require (
