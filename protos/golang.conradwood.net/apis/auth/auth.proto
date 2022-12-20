@@ -201,6 +201,7 @@ message GetTokenRequest {
 message TokenResponse {
   uint32 Expiry = 1; // expirydate
   string Token = 2;  // the new token
+  SignedUser User=3;
 }
 message UserList {
   repeated SignedUser Users=1;
@@ -264,6 +265,9 @@ service AuthManagerService {
 
   // get me another token
   rpc GetTokenForMe(GetTokenRequest) returns (TokenResponse);
+  // get a token for the calling service
+  rpc GetTokenForService(GetTokenRequest) returns (TokenResponse);
+
   // get *me* (my useraccount)
   rpc WhoAmI(common.Void) returns (User);
   // if a token was compromised, replace it with a different one
