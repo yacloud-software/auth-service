@@ -158,6 +158,9 @@ func (a *am) ExpireToken(ctx context.Context, req *pb.ExpireTokenRequest) (*comm
 func (a *am) GetTokenForMe(ctx context.Context, req *pb.GetTokenRequest) (*pb.TokenResponse, error) {
 	return authBE.GetTokenForMe(ctx, req)
 }
+func (a *am) GetTokenForService(ctx context.Context, req *pb.GetTokenRequest) (*pb.TokenResponse, error) {
+	return authBE.GetTokenForService(ctx, req)
+}
 
 func (a *am) SendEmailVerify(ctx context.Context, req *common.Void) (*common.Void, error) {
 	u := auth.GetUser(ctx)
@@ -259,7 +262,11 @@ func checkPassword(ctx context.Context, password string) error {
 func (a *am) WhoAmI(ctx context.Context, req *common.Void) (*pb.User, error) {
 	user := auth.GetUser(ctx)
 	if user == nil {
-		return nil, errors.Unauthenticated(ctx, "access denied")
+		user = auth.GetService(ctx)
+		if user == nil {
+			fmt.Printf("No user and no service. WhoAmI() access denied\n")
+			return nil, errors.Unauthenticated(ctx, "access denied")
+		}
 	}
 	f := &pb.ByIDRequest{UserID: user.ID}
 	return a.GetUserByID(ctx, f)

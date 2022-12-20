@@ -230,13 +230,23 @@ func (a *PostgresAuthenticator) CreateService(ctx context.Context, req *pb.Creat
 	return res, nil
 }
 
-func (d *PostgresAuthenticator) GetTokenForMe(ctx context.Context, req *pb.GetTokenRequest) (*pb.TokenResponse, error) {
+func (a *PostgresAuthenticator) GetTokenForMe(ctx context.Context, req *pb.GetTokenRequest) (*pb.TokenResponse, error) {
 	user := auth.GetUser(ctx)
 	if user == nil {
 		return nil, errors.Unauthenticated(ctx, "gettokenforme() requires a user in context")
 	}
+	return a.gettokenforuser(ctx, user.ID, req)
+}
+func (a *PostgresAuthenticator) GetTokenForService(ctx context.Context, req *pb.GetTokenRequest) (*pb.TokenResponse, error) {
+	user := auth.GetService(ctx)
+	if user == nil {
+		return nil, errors.Unauthenticated(ctx, "gettokenforme() requires a service in context")
+	}
+	return a.gettokenforuser(ctx, user.ID, req)
+}
+func (a *PostgresAuthenticator) gettokenforuser(ctx context.Context, user_id string, req *pb.GetTokenRequest) (*pb.TokenResponse, error) {
 	now := uint32(time.Now().Unix())
-	userid, err := strconv.ParseUint(user.ID, 10, 64)
+	userid, err := strconv.ParseUint(user_id, 10, 64)
 	if err != nil {
 		return nil, err
 	}
@@ -255,7 +265,11 @@ func (d *PostgresAuthenticator) GetTokenForMe(ctx context.Context, req *pb.GetTo
 	if err != nil {
 		return nil, err
 	}
-	res := &pb.TokenResponse{Token: tok, Expiry: uint32(exp.Unix())}
+	suser, err := a.SignedGetUserByID(ctx, &pb.ByIDRequest{UserID: user_id})
+	if err != nil {
+		return nil, err
+	}
+	res := &pb.TokenResponse{User: suser, Token: tok, Expiry: uint32(exp.Unix())}
 	return res, nil
 }
 

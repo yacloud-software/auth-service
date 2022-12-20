@@ -50,6 +50,7 @@ type Authenticator interface {
 	ExpireToken(ctx context.Context, req *pb.ExpireTokenRequest) (*common.Void, error)
 	// get a new token for current (ONLY!) user
 	GetTokenForMe(ctx context.Context, req *pb.GetTokenRequest) (*pb.TokenResponse, error)
+	GetTokenForService(ctx context.Context, req *pb.GetTokenRequest) (*pb.TokenResponse, error)
 	ListAllGroups(ctx context.Context) (*pb.GroupList, error)
 	Sudo(ctx context.Context, req *pb.SudoRequest) error
 	GetGroupByID(ctx context.Context, req *pb.GetGroupRequest) (*pb.Group, error)
