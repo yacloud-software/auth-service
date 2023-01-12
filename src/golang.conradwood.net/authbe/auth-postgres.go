@@ -10,10 +10,10 @@ import (
 	"golang.conradwood.net/apis/email"
 	"golang.conradwood.net/authdb/db"
 	"golang.conradwood.net/go-easyops/auth"
+	"golang.conradwood.net/go-easyops/authremote"
 	"golang.conradwood.net/go-easyops/errors"
 	"golang.conradwood.net/go-easyops/prometheus"
 	"golang.conradwood.net/go-easyops/sql"
-	"golang.conradwood.net/go-easyops/tokens"
 	"golang.conradwood.net/go-easyops/utils"
 	"golang.org/x/crypto/bcrypt"
 	"strconv"
@@ -723,7 +723,7 @@ func (a *PostgresAuthenticator) ResetPasswordEmail(ctx context.Context, req *pb.
 	ter.Values["email"] = u.Email
 	// send asynchronously
 	go func(vals *email.TemplateEmailRequest) {
-		ctx := tokens.ContextWithToken()
+		ctx := authremote.Context()
 		tr, err := es.SendTemplate(ctx, vals)
 		if err != nil {
 			fmt.Printf("Send Email to %s failed: %s\n", vals.Values["email"], err)
