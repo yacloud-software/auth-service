@@ -1,9 +1,9 @@
 package authbe
 
 import (
+    "golang.conradwood.net/go-easyops/authremote"
 	"fmt"
 	pb "golang.conradwood.net/apis/auth"
-	"golang.conradwood.net/go-easyops/tokens"
 	"golang.conradwood.net/go-easyops/utils"
 	"time"
 )
@@ -23,7 +23,7 @@ func pg_expirer() {
 			}
 		}
 		time.Sleep(time.Duration(5) * time.Minute)
-		ctx := tokens.ContextWithToken()
+		ctx := authremote.Context()
 		sts, err := sudoers.All(ctx)
 		if err != nil {
 			fmt.Printf("failed to get all sudos: %s", err)
@@ -41,7 +41,7 @@ func pg_expirer() {
 	}
 }
 func pg_expire_tokens() error {
-	ctx := tokens.ContextWithToken()
+	ctx := authremote.Context()
 	cutoff := time.Now().Add(0 - time.Duration(24)*time.Hour)
 	cf := cutoff.Unix()
 	_, err := psql.ExecContext(ctx, "expire_tokens", "delete from tokens where expiry < $1 and tokentype = $2", cf, pb.TokenType_SESSION)

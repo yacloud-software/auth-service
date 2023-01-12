@@ -8,7 +8,6 @@ import (
 	au "golang.conradwood.net/go-easyops/auth"
 	"golang.conradwood.net/go-easyops/authremote"
 	cm "golang.conradwood.net/go-easyops/common"
-	"golang.conradwood.net/go-easyops/tokens"
 	"golang.conradwood.net/go-easyops/utils"
 	"os"
 )
@@ -44,7 +43,7 @@ func main() {
 		os.Exit(0)
 	}
 	if *savekey {
-		k, err := authremote.GetAuthClient().GetPublicSigningKey(tokens.ContextWithToken(), &common.Void{})
+		k, err := authremote.GetAuthClient().GetPublicSigningKey(authremote.Context(), &common.Void{})
 		utils.Bail("Failed to get key", err)
 		err = utils.WriteFile(keyfile, k.Key)
 		utils.Bail("Failed to save file", err)
@@ -74,7 +73,7 @@ func main() {
 }
 
 func CreateService() {
-	ctx := tokens.ContextWithToken()
+	ctx := authremote.Context()
 	res, err := am.CreateService(ctx, &auth.CreateServiceRequest{ServiceName: *sname, Token: *ntoken})
 	utils.Bail("failed to create service", err)
 	displayUser(res.User)
@@ -83,7 +82,7 @@ func CreateService() {
 func CreateUser() {
 	var u *auth.User
 	var err error
-	ctx := tokens.ContextWithToken()
+	ctx := authremote.Context()
 	u, err = am.GetUserByEmail(ctx, &auth.ByEmailRequest{Email: *email})
 	if err != nil {
 		cur := &auth.CreateUserRequest{
@@ -105,7 +104,7 @@ func CreateUser() {
 }
 
 func ResetPassword() {
-	ctx := tokens.ContextWithToken()
+	ctx := authremote.Context()
 	u, err := am.GetUserByEmail(ctx, &auth.ByEmailRequest{Email: *email})
 	utils.Bail("failed to lookup by email", err)
 	displayUser(u)
@@ -114,7 +113,7 @@ func ResetPassword() {
 }
 
 func ShowUser() {
-	ctx := tokens.ContextWithToken()
+	ctx := authremote.Context()
 	u, err := am.GetUserByEmail(ctx, &auth.ByEmailRequest{Email: *email})
 	utils.Bail("failed to lookup by email", err)
 	displayUser(u)
@@ -146,7 +145,7 @@ func displayUser(user *auth.User) {
 	}
 }
 func ResetEmailPassword() {
-	_, err := am.ResetPasswordEmail(tokens.ContextWithToken(), &auth.ResetRequest{Email: *email})
+	_, err := am.ResetPasswordEmail(authremote.Context(), &auth.ResetRequest{Email: *email})
 	utils.Bail("Failed to reset password", err)
 	fmt.Printf("send email to %s (if exists in database)\n", *email)
 
