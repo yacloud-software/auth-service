@@ -70,7 +70,7 @@ func (a *am) SignedGetUserByEmail(ctx context.Context, req *pb.ByEmailRequest) (
 	return authBE.SignedGetUserByEmail(ctx, req)
 }
 func (a *am) SignedGetUserByID(ctx context.Context, req *pb.ByIDRequest) (*pb.SignedUser, error) {
-	return authBE.SignedGetUserByID(ctx, req)
+	return usercache_SignedGetUserByID(ctx, req)
 }
 
 func (a *am) ListGroups(ctx context.Context, req *common.Void) (*pb.GroupList, error) {
@@ -82,7 +82,7 @@ func (a *am) ListGroups(ctx context.Context, req *common.Void) (*pb.GroupList, e
 
 }
 func (a *am) GetUserByID(ctx context.Context, req *pb.ByIDRequest) (*pb.User, error) {
-	return authBE.GetUserByID(ctx, req)
+	return usercache_GetUserByID(ctx, req)
 
 }
 func (a *am) ForceUpdatePassword(ctx context.Context, req *pb.ForceUpdatePasswordRequest) (*common.Void, error) {
