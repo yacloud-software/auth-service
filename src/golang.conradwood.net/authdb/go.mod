@@ -3,8 +3,8 @@ module golang.conradwood.net/authdb
 go 1.18
 
 require (
-	golang.conradwood.net/apis/auth v1.1.2289
-	golang.conradwood.net/go-easyops v0.1.17366
+	golang.conradwood.net/apis/auth v1.1.2296
+	golang.conradwood.net/go-easyops v0.1.17546
 )
 
 require (
@@ -18,8 +18,8 @@ require (
 	github.com/prometheus/client_model v0.4.0 // indirect
 	github.com/prometheus/common v0.43.0 // indirect
 	github.com/prometheus/procfs v0.9.0 // indirect
-	golang.conradwood.net/apis/common v1.1.2289 // indirect
-	golang.conradwood.net/apis/framework v1.1.2289 // indirect
+	golang.conradwood.net/apis/common v1.1.2296 // indirect
+	golang.conradwood.net/apis/framework v1.1.2296 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
