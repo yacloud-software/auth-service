@@ -37,6 +37,7 @@ func main() {
 	auth.PrintUser(auth.GetUser(ctx))
 	u, err := authremote.GetAuthManagerClient().WhoAmI(ctx, &common.Void{})
 	utils.Bail("failed to get user account", err)
+	fmt.Printf("Cloud  : %s\n", gc.GetCloudName())
 	fmt.Printf("UserID : %s\n", u.ID)
 	fmt.Printf("Name   : %s %s\n", u.FirstName, u.LastName)
 	fmt.Printf("Email  : %s\n", u.Email)
