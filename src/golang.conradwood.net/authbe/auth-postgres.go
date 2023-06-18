@@ -422,6 +422,7 @@ func (a *PostgresAuthenticator) GetByPassword(ctx context.Context, req *pb.Authe
 func (a *PostgresAuthenticator) GetByToken(ctx context.Context, req *pb.AuthenticateTokenRequest) (*pb.AuthResponse, error) {
 	accessCounter.With(getlabels(ctx, "getbytoken")).Inc()
 	if len(req.Token) < 12 {
+		print_sensitive("token \"%s\" too short\n", req.Token)
 		res := &pb.AuthResponse{Valid: false, PublicMessage: "access denied", LogMessage: fmt.Sprintf("Token too short (%d) characters", len(req.Token))}
 		return res, nil
 	}
