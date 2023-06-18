@@ -39,6 +39,7 @@ var (
 	orgdb                *db.DBOrganisation
 	lorggroupdb          *db.DBLinkGroupOrganisation
 	userdb               *db.DBUser
+	print_sensitive_flag = flag.Bool("print_sensitive_information", false, "do not use in production. only local debugging")
 	create_user_services = flag.String("root_services", "", "list services that are allowed to create users")
 	accessCounter        = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
@@ -424,6 +425,7 @@ func (a *PostgresAuthenticator) GetByToken(ctx context.Context, req *pb.Authenti
 		res := &pb.AuthResponse{Valid: false, PublicMessage: "access denied", LogMessage: fmt.Sprintf("Token too short (%d) characters", len(req.Token))}
 		return res, nil
 	}
+	print_sensitive("Getting user by token \"%s\"\n", req.Token)
 	db, err := sql.Open()
 	if err != nil {
 		return nil, err
@@ -1036,4 +1038,10 @@ func delete_prober_user_loop() {
 
 		}
 	}
+}
+func print_sensitive(format string, args ...interface{}) {
+	if !*print_sensitive_flag {
+		return
+	}
+	fmt.Printf(format, args...)
 }

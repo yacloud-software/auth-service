@@ -14,6 +14,7 @@ import (
 )
 
 var (
+	debug      = flag.Bool("debug", false, "debug mode")
 	print_keys = flag.Bool("print_keys", false, "also print ssh keys")
 	unix       = flag.Bool("unix", false, "also get unix user details")
 )
@@ -29,12 +30,22 @@ func main() {
 			os.Exit(10)
 		}
 	*/
+	if *debug {
+		fmt.Printf("Creating context...\n")
+	}
 	ctx := authremote.Context()
 	if ctx == nil {
 		fmt.Printf("No user information available\n")
 		os.Exit(10)
 	}
+	u := auth.GetUser(ctx)
+	if *debug {
+		fmt.Printf("Got context for \"%s\"\n", auth.Description(u))
+	}
 	auth.PrintUser(auth.GetUser(ctx))
+	if *debug {
+		fmt.Printf("Calling authmanager...\n")
+	}
 	u, err := authremote.GetAuthManagerClient().WhoAmI(ctx, &common.Void{})
 	utils.Bail("failed to get user account", err)
 	fmt.Printf("Cloud  : %s\n", gc.GetCloudName())
