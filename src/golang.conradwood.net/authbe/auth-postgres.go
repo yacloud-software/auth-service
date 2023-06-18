@@ -801,36 +801,48 @@ func (d *PostgresAuthenticator) Sudo(ctx context.Context, req *pb.SudoRequest) e
 	if u == nil {
 		return fmt.Errorf("no current user")
 	}
+	ok := false
+	for _, su := range GetSudoers() {
+		if su == u.ID {
+			ok = true
+		}
+	}
+	if !ok {
+		return errors.AccessDenied(ctx, "access denied")
+	}
 	uids := u.ID
 	if req.UserID != "" {
-		ok := false
-		if u.ID == "1" && req.UserID == "7" {
-			ok = true
-		}
-		if u.ID == "7" && req.UserID == "1" {
-			ok = true
-		}
-		if u.ID == req.UserID {
-			ok = true
-		}
-		if !ok {
+		/*
+			ok := false
+			if u.ID == req.UserID {
+			}
+			if u.ID == "1" && req.UserID == "7" {
+				ok = true
+			}
+			if u.ID == "7" && req.UserID == "1" {
+				ok = true
+			}
+			if u.ID == req.UserID {
+				ok = true
+			}
+			if !ok {
+				return errors.AccessDenied(ctx, "invalid userid combination")
+			}
+			uids = req.UserID
+		*/
+		if req.UserID != u.ID {
 			return errors.AccessDenied(ctx, "invalid userid combination")
 		}
-		uids = req.UserID
-
 	}
 	uid, err := strconv.ParseUint(uids, 10, 64)
 	if err != nil {
 		return err
 	}
-	if uid != 1 && uid != 7 {
-		return fmt.Errorf("access denied")
-	}
+	// 	return fmt.Errorf("access denied")
 	e := uint32(time.Now().Add(time.Duration(30) * time.Minute).Unix())
 	sts := &pb.SudoStatus{UserID: uid, GroupID: "1", Expiry: e}
 	_, err = sudoers.Save(ctx, sts)
 	return err
-
 }
 
 func (a *PostgresAuthenticator) GetGroupByID(ctx context.Context, req *pb.GetGroupRequest) (*pb.Group, error) {
