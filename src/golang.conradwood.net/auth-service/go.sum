@@ -2,7 +2,6 @@ github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
 github.com/cespare/xxhash/v2 v2.2.0 h1:DC2CZ1Ep5Y4k3ZQ899DldepgrayRUGE6BBZ/cd9Cj44=
 github.com/cespare/xxhash/v2 v2.2.0/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
-github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/dustin/go-humanize v1.0.1 h1:GzkhY7T5VNhEkwH0PVJgjz+fX1rhBrR7pRT3mDkpeCY=
 github.com/dustin/go-humanize v1.0.1/go.mod h1:Mu1zIs6XwVuF/gI1OepvI0qD18qycQx+mFykh5fBlto=
@@ -14,7 +13,6 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=
-github.com/kr/text v0.2.0/go.mod h1:eLer722TekiGuMkidMxC/pM04lWEeraHUUmBw8l2grE=
 github.com/lib/pq v1.10.9 h1:YXG7RB+JIjhP29X+OtkiDnYaXQwpS4JEWq7dtCCRUEw=
 github.com/lib/pq v1.10.9/go.mod h1:AlVN5x4E4T544tWzH6hKfbfQvm3HdbOxrmggDNAPY9o=
 github.com/matttproud/golang_protobuf_extensions v1.0.4 h1:mmDVorXM7PCGKw94cs5zkfA9PSy5pEvNWRP0ET0TIVo=
@@ -54,8 +52,8 @@ golang.conradwood.net/apis/rpcinterceptor v1.1.2296 h1:7v9tDXVYAyp7lCapKKx/+BZrk
 golang.conradwood.net/apis/rpcinterceptor v1.1.2296/go.mod h1:6QHc3jpt56+Zykq8ixbtF3ILnz2dgSB4BQSYFeG31xE=
 golang.conradwood.net/apis/slackgateway v1.1.2296 h1:V0iuMQasC1Q+G/8pWqao0giLZ+KU/C1juAzEaKKr+uA=
 golang.conradwood.net/apis/slackgateway v1.1.2296/go.mod h1:AOcwmD9KfkIiCvAhBEmSt1g4Bvt/tlNlqzICCF0UBQo=
-golang.conradwood.net/go-easyops v0.1.17546 h1:RVoyCEEnY6PGXOWOSwnSBEmIBuMTypKNVjWNQAn7610=
-golang.conradwood.net/go-easyops v0.1.17546/go.mod h1:9/cPqfl+9U07Kn6XRrQx0ck9Gp19nXTIq8dImvL6OUs=
+golang.conradwood.net/go-easyops v0.1.17671 h1:8m/A4WFFuODnF8nk/k9me7ixu0QF4qtShHGyoYbWvYw=
+golang.conradwood.net/go-easyops v0.1.17671/go.mod h1:9/cPqfl+9U07Kn6XRrQx0ck9Gp19nXTIq8dImvL6OUs=
 golang.org/x/crypto v0.10.0 h1:LKqV2xt9+kDzSTfOhx4FrkEBcMrAgHSYgzywV9zcGmM=
 golang.org/x/crypto v0.10.0/go.mod h1:o4eNf7Ede1fv+hwOwZsTHl9EsPFO6q6ZvYR8vYfY45I=
 golang.org/x/net v0.10.0 h1:X2//UzNDwYmtCLn7To6G58Wr6f5ahEAQgKNzv9Y951M=

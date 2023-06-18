@@ -14,7 +14,7 @@ require (
 	golang.conradwood.net/apis/email v1.1.2296
 	golang.conradwood.net/authbe v0.0.0-00010101000000-000000000000
 	golang.conradwood.net/authdb v0.0.0-00010101000000-000000000000
-	golang.conradwood.net/go-easyops v0.1.17546
+	golang.conradwood.net/go-easyops v0.1.17671
 	golang.org/x/crypto v0.10.0
 	google.golang.org/grpc v1.55.0
 )
@@ -24,7 +24,6 @@ require (
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/kr/text v0.2.0 // indirect
 	github.com/lib/pq v1.10.9 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/prometheus/client_golang v1.15.1 // indirect

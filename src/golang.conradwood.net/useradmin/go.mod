@@ -11,7 +11,7 @@ replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 require (
 	golang.conradwood.net/apis/auth v1.1.2296
 	golang.conradwood.net/apis/common v1.1.2296
-	golang.conradwood.net/go-easyops v0.1.17546
+	golang.conradwood.net/go-easyops v0.1.17671
 )
 
 require (
