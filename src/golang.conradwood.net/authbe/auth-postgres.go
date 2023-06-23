@@ -181,7 +181,7 @@ func (a *PostgresAuthenticator) CreateService(ctx context.Context, req *pb.Creat
 		allow = true
 	} else {
 		us := auth.GetService(ctx)
-		if us != nil && us.ID == "3539" { // repobuilder
+		if us != nil && us.ID == auth.GetServiceIDByName("repobuilder.RepoBuilder") { // repobuilder
 			allow = true
 		}
 	}
