@@ -10,7 +10,7 @@ replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
 	golang.conradwood.net/apis/common v1.1.2309
-	golang.conradwood.net/go-easyops v0.1.17825
+	golang.conradwood.net/go-easyops v0.1.17944
 )
 
 require (
