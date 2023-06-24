@@ -10,12 +10,12 @@ replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
 	github.com/golang/protobuf v1.5.3
-	golang.conradwood.net/apis/auth v1.1.2296
+	golang.conradwood.net/apis/auth v1.1.2309
 	golang.conradwood.net/apis/common v1.1.2309
 	golang.conradwood.net/apis/email v1.1.2309
 	golang.conradwood.net/apis/slackgateway v1.1.2309
 	golang.conradwood.net/authdb v0.0.0-00010101000000-000000000000
-	golang.conradwood.net/go-easyops v0.1.17785
+	golang.conradwood.net/go-easyops v0.1.17806
 	golang.org/x/crypto v0.10.0
 )
 
