@@ -47,10 +47,8 @@ golang.conradwood.net/apis/rpcinterceptor v1.1.2309 h1:YI44HUoA2dkUGhfI58q6p5eJu
 golang.conradwood.net/apis/rpcinterceptor v1.1.2309/go.mod h1:PlaSdGFeaJP0y+tHicV9+jpjZ1yddzoG4T8S5Dxx65E=
 golang.conradwood.net/apis/slackgateway v1.1.2309 h1:Dg/AwG++cZP0KeZvQacOMZuoi4CM9a2XH445R14cZEg=
 golang.conradwood.net/apis/slackgateway v1.1.2309/go.mod h1:5iqqJhqc36pjvWxsPdaABZeXTPrO+5lbxyjUBGpSDjs=
-golang.conradwood.net/go-easyops v0.1.17785 h1:v8mNcc5mM52OzK91Lg5cjZbIY69a1rXHhG1tEAriAKI=
-golang.conradwood.net/go-easyops v0.1.17785/go.mod h1:RqfsR695JGK5xh6bCzYLfrODNY2kE84piS8DR/oSEps=
-golang.conradwood.net/go-easyops v0.1.17806 h1:lHLujHJ4mB4f6jc58YQ2TyRiIqEkqxeqYUpYzdhyUJM=
-golang.conradwood.net/go-easyops v0.1.17806/go.mod h1:WOsb8fIHprDMVXygdWuqmApdaG3QC4DoQOvmPSUa3t4=
+golang.conradwood.net/go-easyops v0.1.17825 h1:NB3xvJv9XQ9h7ktrS1tS8NTYXbTSvmatmaX7fhs0nQw=
+golang.conradwood.net/go-easyops v0.1.17825/go.mod h1:WOsb8fIHprDMVXygdWuqmApdaG3QC4DoQOvmPSUa3t4=
 golang.org/x/crypto v0.10.0 h1:LKqV2xt9+kDzSTfOhx4FrkEBcMrAgHSYgzywV9zcGmM=
 golang.org/x/crypto v0.10.0/go.mod h1:o4eNf7Ede1fv+hwOwZsTHl9EsPFO6q6ZvYR8vYfY45I=
 golang.org/x/net v0.11.0 h1:Gi2tvZIJyBtO9SDr1q9h5hEQCp/4L2RQ+ar0qjx2oNU=
