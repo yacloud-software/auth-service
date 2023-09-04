@@ -10,7 +10,7 @@ replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
 	golang.conradwood.net/apis/common v1.1.2525
-	golang.conradwood.net/go-easyops v0.1.19156
+	golang.conradwood.net/go-easyops v0.1.19481
 )
 
 require (
@@ -23,7 +23,7 @@ require (
 	github.com/prometheus/client_model v0.4.0 // indirect
 	github.com/prometheus/common v0.44.0 // indirect
 	github.com/prometheus/procfs v0.11.1 // indirect
-	golang.conradwood.net/apis/auth v1.1.2495 // indirect
+	golang.conradwood.net/apis/auth v1.1.2503 // indirect
 	golang.conradwood.net/apis/autodeployer v1.1.2525 // indirect
 	golang.conradwood.net/apis/deploymonkey v1.1.2525 // indirect
 	golang.conradwood.net/apis/framework v1.1.2525 // indirect

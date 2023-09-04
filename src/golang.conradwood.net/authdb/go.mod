@@ -3,8 +3,8 @@ module golang.conradwood.net/authdb
 go 1.18
 
 require (
-	golang.conradwood.net/apis/auth v1.1.2495
-	golang.conradwood.net/go-easyops v0.1.19156
+	golang.conradwood.net/apis/auth v1.1.2503
+	golang.conradwood.net/go-easyops v0.1.19481
 )
 
 require (
