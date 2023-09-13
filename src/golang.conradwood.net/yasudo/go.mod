@@ -10,7 +10,7 @@ replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
 	golang.conradwood.net/apis/auth v1.1.2503
-	golang.conradwood.net/go-easyops v0.1.20076
+	golang.conradwood.net/go-easyops v0.1.20106
 )
 
 require (
@@ -30,7 +30,6 @@ require (
 	golang.conradwood.net/apis/goeasyops v1.1.2566 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.2566 // indirect
 	golang.conradwood.net/apis/registry v1.1.2566 // indirect
-	golang.conradwood.net/apis/rpcinterceptor v1.1.2566 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/sys v0.11.0 // indirect
 	golang.org/x/text v0.12.0 // indirect

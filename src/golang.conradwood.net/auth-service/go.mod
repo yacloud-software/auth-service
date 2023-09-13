@@ -11,7 +11,7 @@ replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 require (
 	golang.conradwood.net/apis/auth v1.1.2503
 	golang.conradwood.net/authbe v0.0.0-00010101000000-000000000000
-	golang.conradwood.net/go-easyops v0.1.20076
+	golang.conradwood.net/go-easyops v0.1.20106
 	google.golang.org/grpc v1.57.0
 )
 
@@ -37,7 +37,6 @@ require (
 	golang.conradwood.net/apis/h2gproxy v1.1.2566 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.2566 // indirect
 	golang.conradwood.net/apis/registry v1.1.2566 // indirect
-	golang.conradwood.net/apis/rpcinterceptor v1.1.2566 // indirect
 	golang.conradwood.net/apis/slackgateway v1.1.2566 // indirect
 	golang.conradwood.net/authdb v0.0.0-00010101000000-000000000000 // indirect
 	golang.org/x/crypto v0.12.0 // indirect
