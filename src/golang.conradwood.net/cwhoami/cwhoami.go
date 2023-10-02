@@ -14,10 +14,11 @@ import (
 )
 
 var (
-	debug      = flag.Bool("debug", false, "debug mode")
-	print_keys = flag.Bool("print_keys", false, "also print ssh keys")
-	unix       = flag.Bool("unix", false, "also get unix user details")
-	email_only = flag.Bool("email_only", false, "if true only print my email address")
+	debug       = flag.Bool("debug", false, "debug mode")
+	print_keys  = flag.Bool("print_keys", false, "also print ssh keys")
+	unix        = flag.Bool("unix", false, "also get unix user details")
+	email_only  = flag.Bool("email_only", false, "if true only print my email address")
+	bash_prompt = flag.Bool("bash_prompt", false, "change behaviour to be suitable for inclusion as a bash prompt")
 )
 
 func isQuiet() bool {
