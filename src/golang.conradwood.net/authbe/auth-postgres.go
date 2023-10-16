@@ -31,17 +31,18 @@ const (
 )
 
 var (
-	sudoers              *db.DBSudoStatus
-	groups               *db.DBGroupDB
-	es                   email.EmailServiceClient
-	psql                 *sql.DB
-	tokendb              *db.DBUserTokens
-	orgdb                *db.DBOrganisation
-	lorggroupdb          *db.DBLinkGroupOrganisation
-	userdb               *db.DBUser
-	print_sensitive_flag = flag.Bool("print_sensitive_information", false, "do not use in production. only local debugging")
-	create_user_services = flag.String("root_services", "", "list services that are allowed to create users")
-	accessCounter        = prometheus.NewCounterVec(
+	sudoers                                 *db.DBSudoStatus
+	groups                                  *db.DBGroupDB
+	es                                      email.EmailServiceClient
+	psql                                    *sql.DB
+	tokendb                                 *db.DBUserTokens
+	orgdb                                   *db.DBOrganisation
+	lorggroupdb                             *db.DBLinkGroupOrganisation
+	userdb                                  *db.DBUser
+	ignore_invalid_email_for_reset_password = flag.Bool("ignore_nonexistent_email_addresses", true, "if true, ignore email addresses that do not exist, e.g. for resetpassword. if false, this will be an error")
+	print_sensitive_flag                    = flag.Bool("print_sensitive_information", false, "do not use in production. only local debugging")
+	create_user_services                    = flag.String("root_services", "", "list services that are allowed to create users")
+	accessCounter                           = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
 			Name: "auth_grpc_access",
 			Help: "V=1 UNIT=hz DESC=incremented each time we process a login, by token or password",
@@ -700,8 +701,15 @@ func (a *PostgresAuthenticator) createUser(ctx context.Context, user *pb.User) e
 	return nil
 }
 func (a *PostgresAuthenticator) ResetPasswordEmail(ctx context.Context, req *pb.ResetRequest) (*common.Void, error) {
+	if !validEmail(req.Email) {
+		return nil, errors.InvalidArgs(ctx, "invalid emailaddress", "email address \"%s\" is not a valid emailaddress", req.Email)
+	}
 	u, err := a.GetUserByEmail(ctx, &pb.ByEmailRequest{Email: req.Email})
 	if err != nil {
+		if *ignore_invalid_email_for_reset_password {
+			fmt.Printf("Silently supressing request to reset password for %s (user does not exist)", req.Email)
+			return &common.Void{}, nil
+		}
 		return nil, err
 	}
 	if u == nil {
