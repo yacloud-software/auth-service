@@ -11,6 +11,7 @@ import (
 )
 
 var (
+	email_sender   = flag.String("email_sender", "donotreply@yacloud.eu", "the email sender for things like forgot password")
 	nonsignedusers = flag.Bool("non_signed_users", true, "if true support unsigned (old-style) signed user accounts, otherwise only signed ones")
 	backend        = flag.String("backend", "none", "backend to use: any|none|postgres")
 	service        = flag.Bool("service", false, "When using the 'any' backend, produce Service Accounts")
@@ -36,6 +37,9 @@ func New() Authenticator {
 		os.Exit(10)
 	}
 	return authBE
+}
+func GetEmailSender() string {
+	return *email_sender
 }
 
 type Authenticator interface {

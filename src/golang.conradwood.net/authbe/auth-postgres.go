@@ -715,7 +715,7 @@ func (a *PostgresAuthenticator) ResetPasswordEmail(ctx context.Context, req *pb.
 	if err != nil {
 		return nil, err
 	}
-	ter := &email.TemplateEmailRequest{Sender: "donotreply@yacloud.eu",
+	ter := &email.TemplateEmailRequest{Sender: *email_sender,
 		Recipient:    req.Email,
 		TemplateName: "forgotemail",
 		Values:       make(map[string]string),

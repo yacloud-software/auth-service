@@ -22,7 +22,7 @@ import (
 )
 
 var (
-	sender   = flag.String("email_sender", "donotreply@singingcat.net", "the email sender for forgot email emails")
+	//	sender   = flag.String("email_sender", "donotreply@singingcat.net", "the email sender for forgot email emails")
 	port     = flag.Int("port", 12312, "grpc port")
 	authBE   authbe.Authenticator
 	evpstore *db.DBEmailVerifyPins
@@ -183,7 +183,7 @@ func (a *am) SendEmailVerify(ctx context.Context, req *common.Void) (*common.Voi
 		return nil, err
 	}
 	es := email.GetEmailServiceClient()
-	ter := &email.TemplateEmailRequest{Sender: *sender,
+	ter := &email.TemplateEmailRequest{Sender: authbe.GetEmailSender(),
 		Recipient:    emailadr,
 		TemplateName: "verifyemail",
 		Values:       make(map[string]string),
