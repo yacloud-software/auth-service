@@ -41,7 +41,7 @@ func main() {
 	utils.Bail("auth db error", err)
 	evpstore = db.NewDBEmailVerifyPins(dbs)
 	sd := server.NewServerDef()
-	sd.Port = *port
+	sd.SetPort(*port)
 	sd.Register = func(server *grpc.Server) error {
 		pb.RegisterAuthManagerServiceServer(server, &am{})
 		return nil

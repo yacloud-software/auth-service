@@ -37,7 +37,7 @@ func start() error {
 	var err error
 
 	sd := server.NewServerDef()
-	sd.Port = *port
+	sd.SetPort(*port)
 	// we ARE the authentication service so don't insist on authenticated calls
 	sd.NoAuth = true
 
