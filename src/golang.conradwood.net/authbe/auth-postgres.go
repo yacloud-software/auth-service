@@ -1018,6 +1018,41 @@ func (a *PostgresAuthenticator) GetAllUsers(ctx context.Context, req *common.Voi
 	return ul, nil
 }
 
+func (a *PostgresAuthenticator) AddUserToGroup(ctx context.Context, req *pb.AddToGroupRequest) (*common.Void, error) {
+	db, err := sql.Open()
+	if err != nil {
+		return nil, err
+	}
+	err = errors.NeedServiceOrRoot(ctx, GetRootServices())
+	if err != nil {
+		return nil, err
+	}
+	u, err := a.GetUserByID(ctx, &pb.ByIDRequest{UserID: req.UserID})
+	if err != nil {
+		return nil, err
+	}
+	for _, g := range u.Groups {
+		if g.ID == req.GroupID {
+			// user already in group
+			return &common.Void{}, nil
+		}
+	}
+	gps, err := a.ListAllGroups(ctx)
+	if err != nil {
+		return nil, err
+	}
+	for _, g := range gps.Groups {
+		if g.ID == req.GroupID {
+			_, err = db.ExecContext(ctx, "add_user_to_group", "insert into user_groups (userid,groupid) values ($1,$2,$3,$4)", req.UserID, req.GroupID)
+			if err != nil {
+				return nil, err
+			}
+			return &common.Void{}, nil
+		}
+	}
+	return nil, errors.NotFound(ctx, "group does not exist")
+}
+
 func table_exists(tname string) bool {
 	_, err := psql.ExecContext(context.Background(), "check_exists", "select * from "+tname)
 	if err == nil {

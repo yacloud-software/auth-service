@@ -73,6 +73,10 @@ func (a *am) SignedGetUserByID(ctx context.Context, req *pb.ByIDRequest) (*pb.Si
 	return usercache_SignedGetUserByID(ctx, req)
 }
 
+func (a *am) AddUserToGroup(ctx context.Context, req *pb.AddToGroupRequest) (*common.Void, error) {
+	return authBE.AddUserToGroup(ctx, req)
+}
+
 func (a *am) ListGroups(ctx context.Context, req *common.Void) (*pb.GroupList, error) {
 	err := errors.NeedsRoot(ctx)
 	if err != nil {
