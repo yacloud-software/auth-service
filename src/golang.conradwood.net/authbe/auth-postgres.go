@@ -1043,7 +1043,7 @@ func (a *PostgresAuthenticator) AddUserToGroup(ctx context.Context, req *pb.AddT
 	}
 	for _, g := range gps.Groups {
 		if g.ID == req.GroupID {
-			_, err = db.ExecContext(ctx, "add_user_to_group", "insert into user_groups (userid,groupid) values ($1,$2,$3,$4)", req.UserID, req.GroupID)
+			_, err = db.ExecContext(ctx, "add_user_to_group", "insert into user_groups (userid,groupid) values ($1,$2)", req.UserID, req.GroupID)
 			if err != nil {
 				return nil, err
 			}
