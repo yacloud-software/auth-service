@@ -297,6 +297,9 @@ service AuthManagerService {
   rpc CreateSession(common.Void) returns (SignedSession);
   // "keep-alive" for a session token
   rpc KeepAliveSession(KeepAliveSessionRequest) returns (SignedSession);
+  // add a user to a group (privileged)
+  rpc AddUserToGroup(AddToGroupRequest) returns (common.Void);
+
 }
 
 message ByAbbrevRequest {
