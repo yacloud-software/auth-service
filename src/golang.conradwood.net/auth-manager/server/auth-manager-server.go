@@ -327,10 +327,6 @@ func (a *am) GetByAbbreviation(ctx context.Context, req *pb.ByAbbrevRequest) (*p
 	return authBE.GetByAbbreviation(ctx, req)
 }
 func (a *am) GetAllUsers(ctx context.Context, req *common.Void) (*pb.UserList, error) {
-	err := errors.NeedsRoot(ctx)
-	if err != nil {
-		return nil, err
-	}
 	return authBE.GetAllUsers(ctx, req)
 }
 
