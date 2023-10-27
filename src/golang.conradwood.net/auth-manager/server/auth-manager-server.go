@@ -10,6 +10,7 @@ import (
 	"golang.conradwood.net/authbe"
 	"golang.conradwood.net/authdb/db"
 	"golang.conradwood.net/go-easyops/auth"
+	"strings"
 	//	"golang.conradwood.net/go-easyops/authremote"
 	"golang.conradwood.net/go-easyops/errors"
 	"golang.conradwood.net/go-easyops/server"
@@ -22,6 +23,7 @@ import (
 )
 
 var (
+	list_group_services = flag.String("list_group_services", "", "services which are allowed to list all groups")
 	//	sender   = flag.String("email_sender", "donotreply@singingcat.net", "the email sender for forgot email emails")
 	port     = flag.Int("port", 12312, "grpc port")
 	authBE   authbe.Authenticator
@@ -78,10 +80,11 @@ func (a *am) AddUserToGroup(ctx context.Context, req *pb.AddToGroupRequest) (*co
 }
 
 func (a *am) ListGroups(ctx context.Context, req *common.Void) (*pb.GroupList, error) {
-	err := errors.NeedsRoot(ctx)
-	if err != nil {
-		return nil, err
+	e := errors.NeedServiceOrRoot(ctx, GetListGroupServices())
+	if e != nil {
+		return nil, e
 	}
+
 	return authBE.ListAllGroups(ctx)
 
 }
@@ -336,4 +339,7 @@ func (a *am) CreateSession(ctx context.Context, req *common.Void) (*pb.SignedSes
 }
 func (a *am) KeepAliveSession(ctx context.Context, req *pb.KeepAliveSessionRequest) (*pb.SignedSession, error) {
 	return authBE.KeepAliveSession(ctx, req)
+}
+func GetListGroupServices() []string {
+	return strings.Split(*list_group_services, ",")
 }
