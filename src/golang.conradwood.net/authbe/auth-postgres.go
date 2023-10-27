@@ -42,6 +42,7 @@ var (
 	ignore_invalid_email_for_reset_password = flag.Bool("ignore_nonexistent_email_addresses", true, "if true, ignore email addresses that do not exist, e.g. for resetpassword. if false, this will be an error")
 	print_sensitive_flag                    = flag.Bool("print_sensitive_information", false, "do not use in production. only local debugging")
 	create_user_services                    = flag.String("root_services", "", "list services that are allowed to create users")
+	list_all_user_services                  = flag.String("list_all_user_services", "", "list services that are allowed to list users")
 	accessCounter                           = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
 			Name: "auth_grpc_access",
@@ -127,6 +128,9 @@ ALTER TABLE ONLY user_groups ADD CONSTRAINT user_groups_user_id_fkey FOREIGN KEY
 
 func GetRootServices() []string {
 	return strings.Split(*create_user_services, ",")
+}
+func ListAllUsersRootServices() []string {
+	return strings.Split(*list_all_user_services, ",")
 }
 func (a *PostgresAuthenticator) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.User, error) {
 	u, err := a.CreateUserWithErr(ctx, req)
@@ -979,7 +983,7 @@ func (a *PostgresAuthenticator) GetByAbbreviation(ctx context.Context, req *pb.B
 
 }
 func (a *PostgresAuthenticator) GetAllUsers(ctx context.Context, req *common.Void) (*pb.UserList, error) {
-	err := errors.NeedsRoot(ctx)
+	err := errors.NeedServiceOrRoot(ctx, ListAllUsersRootServices())
 	if err != nil {
 		return nil, err
 	}
