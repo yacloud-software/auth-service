@@ -27,7 +27,7 @@ const (
 	INTERNAL_USER_TOKEN_DOMAIN = "token.yacloud.eu"
 	DEFAULTLIFETIMESECS        = 60 * 60 * 10
 	SERVICELIFETIMESECS        = 60 * 60 * 24 * 365 * 10
-	USER_TABLE_COLUMNS         = "users.id,passwd,email,firstname,lastname,abbrev,active,serviceaccount,emailverified,organisationid"
+	USER_TABLE_COLUMNS         = "users.id,passwd,email,firstname,lastname,abbrev,active,serviceaccount,emailverified,organisationid,users.created"
 )
 
 var (
