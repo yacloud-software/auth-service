@@ -490,7 +490,7 @@ func (a *PostgresAuthenticator) GetByToken(ctx context.Context, req *pb.Authenti
 func userFromRow(rows *gosql.Rows) (*pb.User, error) {
 	res := &pb.User{}
 	orgid := gosql.NullInt64{}
-	err := rows.Scan(&res.ID, &res.Password, &res.Email, &res.FirstName, &res.LastName, &res.Abbrev, &res.Active, &res.ServiceAccount, &res.EmailVerified, &orgid)
+	err := rows.Scan(&res.ID, &res.Password, &res.Email, &res.FirstName, &res.LastName, &res.Abbrev, &res.Active, &res.ServiceAccount, &res.EmailVerified, &orgid, &res.Created)
 	if err != nil {
 		return nil, err
 	}
