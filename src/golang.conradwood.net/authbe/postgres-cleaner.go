@@ -1,9 +1,9 @@
 package authbe
 
 import (
-    "golang.conradwood.net/go-easyops/authremote"
 	"fmt"
 	pb "golang.conradwood.net/apis/auth"
+	"golang.conradwood.net/go-easyops/authremote"
 	"golang.conradwood.net/go-easyops/utils"
 	"time"
 )

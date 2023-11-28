@@ -22,8 +22,6 @@ import (
 )
 
 const (
-	TEST_USER_ID               = 2 // this user will be overwritten each time it is created
-	TEST_USER_EMAIL            = "prober_user_foo_bar@conradwood.net"
 	INTERNAL_USER_TOKEN_DOMAIN = "token.yacloud.eu"
 	DEFAULTLIFETIMESECS        = 60 * 60 * 10
 	SERVICELIFETIMESECS        = 60 * 60 * 24 * 365 * 10
@@ -31,6 +29,8 @@ const (
 )
 
 var (
+	TEST_USER_ID                            = flag.Int("prober_user_id", 2, "userid of the prober account matching -prober_user_email") // this user will be overwritten each time it is created
+	TEST_USER_EMAIL                         = flag.String("prober_user_email", "prober_user_foo_bar@conradwood.net", "user account which will be removed/recreated and updated on create")
 	sudoers                                 *db.DBSudoStatus
 	groups                                  *db.DBGroupDB
 	es                                      email.EmailServiceClient
@@ -665,8 +665,8 @@ func (a *PostgresAuthenticator) createUser(ctx context.Context, user *pb.User) e
 	user.Created = now
 	user.OrganisationID = fmt.Sprintf("%d", orgid)
 	user.Password = pw
-	if user.Email == TEST_USER_EMAIL {
-		user.ID = fmt.Sprintf("%d", TEST_USER_ID)
+	if user.Email == *TEST_USER_EMAIL {
+		user.ID = fmt.Sprintf("%d", *TEST_USER_ID)
 		err = userdb.SaveWithID(ctx, user)
 	} else {
 		_, err = userdb.Save(ctx, user)
@@ -1072,7 +1072,7 @@ func delete_prober_user_loop() {
 		n := utils.RandomInt(30)
 		time.Sleep(time.Duration(n) * time.Second)
 		ctx := context.Background()
-		users, err := userdb.ByEmail(ctx, TEST_USER_EMAIL)
+		users, err := userdb.ByEmail(ctx, *TEST_USER_EMAIL)
 		if err != nil {
 			fmt.Printf("test_user_email cleaner: unable to query for test_user_email: %s\n", utils.ErrorString(err))
 			continue
@@ -1085,8 +1085,8 @@ func delete_prober_user_loop() {
 			if u.Created > cutoff {
 				continue
 			}
-			if u.ID != fmt.Sprintf("%d", TEST_USER_ID) {
-				fmt.Printf("test_user_email_cleaner: Not deleting user \"%s\" - expected userid %d\n", u.ID, TEST_USER_ID)
+			if u.ID != fmt.Sprintf("%d", *TEST_USER_ID) {
+				fmt.Printf("test_user_email_cleaner: Not deleting user \"%s\" - expected userid %d\n", u.ID, *TEST_USER_ID)
 				continue
 			}
 			err = userdb.DeleteByID(ctx, u.ID)
