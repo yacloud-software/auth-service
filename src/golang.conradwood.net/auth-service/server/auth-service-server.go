@@ -39,9 +39,9 @@ func start() error {
 	sd := server.NewServerDef()
 	sd.SetPort(*port)
 	// we ARE the authentication service so don't insist on authenticated calls
-	sd.NoAuth = true
+	sd.SetNoAuth()
 
-	sd.Register = st
+	sd.SetRegister(st)
 	err = server.ServerStartup(sd)
 	if err != nil {
 		fmt.Printf("failed to start server: %s\n", err)

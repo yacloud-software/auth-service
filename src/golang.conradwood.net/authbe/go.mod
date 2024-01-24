@@ -15,7 +15,7 @@ require (
 	golang.conradwood.net/apis/email v1.1.2752
 	golang.conradwood.net/apis/slackgateway v1.1.2752
 	golang.conradwood.net/authdb v0.0.0-00010101000000-000000000000
-	golang.conradwood.net/go-easyops v0.1.21449
+	golang.conradwood.net/go-easyops v0.1.24306
 	golang.org/x/crypto v0.18.0
 )
 
@@ -45,4 +45,5 @@ require (
 	google.golang.org/grpc v1.60.1 // indirect
 	google.golang.org/protobuf v1.32.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

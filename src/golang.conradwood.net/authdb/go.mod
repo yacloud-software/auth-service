@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	golang.conradwood.net/apis/auth v1.1.2643
-	golang.conradwood.net/go-easyops v0.1.21449
+	golang.conradwood.net/go-easyops v0.1.24306
 )
 
 require (
@@ -29,6 +29,7 @@ require (
 	google.golang.org/grpc v1.60.1 // indirect
 	google.golang.org/protobuf v1.32.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
 replace golang.conradwood.net/apis/auth => ../../golang.conradwood.net/apis/auth
