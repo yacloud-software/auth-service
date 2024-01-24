@@ -336,6 +336,9 @@ func (a *am) CreateSession(ctx context.Context, req *common.Void) (*pb.SignedSes
 func (a *am) KeepAliveSession(ctx context.Context, req *pb.KeepAliveSessionRequest) (*pb.SignedSession, error) {
 	return authBE.KeepAliveSession(ctx, req)
 }
+func (a *am) GetUserIDsForGroup(ctx context.Context, req *pb.GetUsersInGroupRequest) (*pb.UserIDList, error) {
+	return authBE.GetUserIDsForGroup(ctx, req)
+}
 func GetListGroupServices() []string {
 	return strings.Split(*list_group_services, ",")
 }

@@ -982,6 +982,33 @@ func (a *PostgresAuthenticator) GetByAbbreviation(ctx context.Context, req *pb.B
 	return u, nil
 
 }
+func (a *PostgresAuthenticator) GetUserIDsForGroup(ctx context.Context, req *pb.GetUsersInGroupRequest) (*pb.UserIDList, error) {
+	err := errors.NeedServiceOrRoot(ctx, ListAllUsersRootServices())
+	if err != nil {
+		return nil, err
+	}
+	db, err := sql.Open()
+	if err != nil {
+		return nil, err
+	}
+	groupid := req.GroupID
+
+	rows, err := db.QueryContext(ctx, "get_users_for_group", "select userid from user_groups where groupid = $1", groupid)
+	if err != nil {
+		return nil, err
+	}
+	res := &pb.UserIDList{}
+	for rows.Next() {
+		var userid string
+		err := rows.Scan(&userid)
+		if err != nil {
+			return nil, err
+		}
+		res.UserIDs = append(res.UserIDs, userid)
+	}
+	return res, nil
+}
+
 func (a *PostgresAuthenticator) GetAllUsers(ctx context.Context, req *common.Void) (*pb.UserList, error) {
 	err := errors.NeedServiceOrRoot(ctx, ListAllUsersRootServices())
 	if err != nil {

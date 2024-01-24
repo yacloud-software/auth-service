@@ -68,6 +68,8 @@ type Authenticator interface {
 	CreateSession(ctx context.Context, req *common.Void) (*pb.SignedSession, error)
 	KeepAliveSession(ctx context.Context, req *pb.KeepAliveSessionRequest) (*pb.SignedSession, error)
 	AddUserToGroup(ctx context.Context, req *pb.AddToGroupRequest) (*common.Void, error)
+
+	GetUserIDsForGroup(ctx context.Context, req *pb.GetUsersInGroupRequest) (*pb.UserIDList, error)
 }
 
 func ResponseToSignedResponse(a *pb.AuthResponse) (*pb.SignedAuthResponse, error) {
