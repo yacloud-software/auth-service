@@ -96,10 +96,15 @@ message Group {
   // a free text field describing the usage of this group
   string Description = 3;
 }
+message GetUsersInGroupRequest {
+  string GroupID = 1;
+}
+message UserIDList {
+  repeated string UserIDs=1;
+}
 message GroupList {
   repeated Group Groups = 1;
 }
-
 message AddToGroupRequest {
   string UserID = 1;
   string GroupID = 2;
@@ -299,6 +304,8 @@ service AuthManagerService {
   rpc KeepAliveSession(KeepAliveSessionRequest) returns (SignedSession);
   // add a user to a group (privileged)
   rpc AddUserToGroup(AddToGroupRequest) returns (common.Void);
+  // get userids in group
+  rpc GetUserIDsForGroup(GetUsersInGroupRequest) returns (UserIDList);
 
 }
 
