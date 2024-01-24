@@ -44,10 +44,10 @@ func main() {
 	evpstore = db.NewDBEmailVerifyPins(dbs)
 	sd := server.NewServerDef()
 	sd.SetPort(*port)
-	sd.Register = func(server *grpc.Server) error {
+	sd.SetRegister(func(server *grpc.Server) error {
 		pb.RegisterAuthManagerServiceServer(server, &am{})
 		return nil
-	}
+	})
 	utils.Bail("failed to start server", server.ServerStartup(sd))
 }
 

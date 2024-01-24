@@ -51,6 +51,8 @@ golang.conradwood.net/apis/slackgateway v1.1.2752 h1:ANPXpWKYTg796ZfBnLhd3Xiqxte
 golang.conradwood.net/apis/slackgateway v1.1.2752/go.mod h1:86h8HMXsh5sXyrHZzizqo700fLVh5hNp5iJQzTQbutA=
 golang.conradwood.net/go-easyops v0.1.21449 h1:FCXmO8nlg1QtHF0QiB1undr0G8780qMsZpgKQjYN1H0=
 golang.conradwood.net/go-easyops v0.1.21449/go.mod h1:FVonA5DssCyFdKLtrlLM7na4zUs4NUtYsEV18faLFcg=
+golang.conradwood.net/go-easyops v0.1.24306 h1:WKnRj2TALPQq9SolWtSi/ZlVPV/qDwkeDQD/rYhfAnc=
+golang.conradwood.net/go-easyops v0.1.24306/go.mod h1:jOiUioioTA9xzTgGHB/B5SeASEo8HhKKKWttAmvhPmU=
 golang.org/x/crypto v0.18.0 h1:PGVlW0xEltQnzFZ55hkuX5+KLyrMYhHld1YHO4AKcdc=
 golang.org/x/crypto v0.18.0/go.mod h1:R0j02AL6hcrfOiy9T4ZYp/rcWeMxM3L6QYxlOuEG1mg=
 golang.org/x/net v0.20.0 h1:aCL9BSgETF1k+blQaYUBx9hJ9LOGP3gAVemcZlf1Kpo=
@@ -78,3 +80,5 @@ gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8
 gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c h1:Hei/4ADfdWqJk1ZMxUNpqntNwaWcugrBjAiHlqqRiVk=
 gopkg.in/yaml.v2 v2.4.0 h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY=
 gopkg.in/yaml.v2 v2.4.0/go.mod h1:RDklbk79AGWmwhnvt/jBztapEOGDOx6ZbXqjP6csGnQ=
+gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
+gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
