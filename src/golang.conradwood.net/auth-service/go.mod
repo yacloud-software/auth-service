@@ -27,13 +27,13 @@ require (
 	github.com/prometheus/common v0.45.0 // indirect
 	github.com/prometheus/procfs v0.12.0 // indirect
 	golang.conradwood.net/apis/autodeployer v1.1.2752 // indirect
-	golang.conradwood.net/apis/common v1.1.2765 // indirect
+	golang.conradwood.net/apis/common v1.1.2766 // indirect
 	golang.conradwood.net/apis/deploymonkey v1.1.2752 // indirect
 	golang.conradwood.net/apis/echoservice v1.1.2752 // indirect
 	golang.conradwood.net/apis/email v1.1.2752 // indirect
 	golang.conradwood.net/apis/errorlogger v1.1.2752 // indirect
 	golang.conradwood.net/apis/framework v1.1.2752 // indirect
-	golang.conradwood.net/apis/goeasyops v1.1.2765 // indirect
+	golang.conradwood.net/apis/goeasyops v1.1.2766 // indirect
 	golang.conradwood.net/apis/h2gproxy v1.1.2752 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.2752 // indirect
 	golang.conradwood.net/apis/registry v1.1.2752 // indirect
@@ -44,7 +44,7 @@ require (
 	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.yacloud.eu/apis/fscache v1.1.2752 // indirect
-	golang.yacloud.eu/apis/session v1.1.2765 // indirect
+	golang.yacloud.eu/apis/session v1.1.2766 // indirect
 	golang.yacloud.eu/apis/urlcacher v1.1.2752 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231002182017-d307bd883b97 // indirect
 	google.golang.org/protobuf v1.32.0 // indirect
