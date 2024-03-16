@@ -425,46 +425,59 @@ func (a *PostgresAuthenticator) GetByPassword(ctx context.Context, req *pb.Authe
 
 // authenticate a user by token, return same token
 func (a *PostgresAuthenticator) GetByToken(ctx context.Context, req *pb.AuthenticateTokenRequest) (*pb.AuthResponse, error) {
+	//	var err error
 	accessCounter.With(getlabels(ctx, "getbytoken")).Inc()
 	if len(req.Token) < 12 {
 		print_sensitive("token \"%s\" too short\n", req.Token)
 		res := &pb.AuthResponse{Valid: false, PublicMessage: "access denied", LogMessage: fmt.Sprintf("Token too short (%d) characters", len(req.Token))}
 		return res, nil
 	}
-	print_sensitive("Getting user by token \"%s\"\n", req.Token)
-	db, err := sql.Open()
-	if err != nil {
-		return nil, err
-	}
-	if *debug {
-		fmt.Printf("Attempting to get user by token \"%s\"\n", req.Token)
-	}
-	now := time.Now().Unix()
-	rows, err := db.QueryContext(ctx, "get_by_token", "select "+USER_TABLE_COLUMNS+" from users,tokens where tokens.userid = users.id and tokens.token = $1 and tokens.expiry > $2", req.Token, now)
-	if err != nil {
-		return nil, err
-	}
 	res := &pb.AuthResponse{Valid: false, PublicMessage: "access denied"}
-	if !rows.Next() {
-		if *debug || *print_failures {
-			fmt.Printf("Token \"%s\" not found in db\n", req.Token)
-		}
-		res.LogMessage = "no token found for request"
-		rows.Close()
-		return res, nil
-	}
-	if *debug {
-		fmt.Printf("Token \"%s\" was found in db\n", req.Token)
-	}
-	u, err := userFromRow(rows)
-	rows.Close()
-	if err != nil {
-		if *debug || *print_failures {
-			fmt.Printf("Token \"%s\" was found in db, but cannot get user (%s)\n", req.Token, err)
-		}
-		return nil, err
-	}
+	u := user_cache.GetUserByToken(req.Token)
 
+	if u == nil {
+		print_sensitive("Getting user by token \"%s\"\n", req.Token)
+		db, err := sql.Open()
+		if err != nil {
+			return nil, err
+		}
+		if *debug {
+			fmt.Printf("Attempting to get user by token \"%s\"\n", req.Token)
+		}
+		now := time.Now().Unix()
+		rows, err := db.QueryContext(ctx, "get_by_token", "select "+USER_TABLE_COLUMNS+" from users,tokens where tokens.userid = users.id and tokens.token = $1 and tokens.expiry > $2", req.Token, now)
+		if err != nil {
+			return nil, err
+		}
+		if !rows.Next() {
+			if *debug || *print_failures {
+				fmt.Printf("Token \"%s\" not found in db\n", req.Token)
+			}
+			res.LogMessage = "no token found for request"
+			rows.Close()
+			return res, nil
+		}
+		if *debug {
+			fmt.Printf("Token \"%s\" was found in db\n", req.Token)
+		}
+		u, err = userFromRow(rows)
+		rows.Close()
+		if err != nil {
+			if *debug || *print_failures {
+				fmt.Printf("Token \"%s\" was found in db, but cannot get user (%s)\n", req.Token, err)
+			}
+			return nil, err
+		}
+		err = a.SetGroups(ctx, u)
+		if err != nil {
+			if *debug || *print_failures {
+				fmt.Printf("Token \"%s\" was found in db, but no groups (%s)\n", req.Token, err)
+			}
+			return nil, err
+		}
+		user_cache.SaveUserWithToken(u, req.Token)
+
+	}
 	u.Password = ""
 	res.User = u
 	res.Token = req.Token
@@ -472,13 +485,6 @@ func (a *PostgresAuthenticator) GetByToken(ctx context.Context, req *pb.Authenti
 	res.PublicMessage = "OK"
 	res.LogMessage = "authenticated " + res.User.Email
 
-	err = a.SetGroups(ctx, res.User)
-	if err != nil {
-		if *debug || *print_failures {
-			fmt.Printf("Token \"%s\" was found in db, but no groups (%s)\n", req.Token, err)
-		}
-		return nil, err
-	}
 	if *debug {
 		fmt.Printf("Token \"%s\" was resolved to user (%s [%s])\n", req.Token, res.User.Email, res.User.ID)
 	}

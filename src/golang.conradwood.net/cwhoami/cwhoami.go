@@ -64,6 +64,7 @@ func main() {
 		fmt.Printf("Name   : %s %s\n", u.FirstName, u.LastName)
 		fmt.Printf("Email  : %s\n", u.Email)
 		fmt.Printf("Org-ID : \"%s\"\n", u.OrganisationID)
+		fmt.Printf("Created: %s\n", utils.TimestampString(u.Created))
 		/*
 			var keys [][]byte
 				if *unix || *print_keys {
