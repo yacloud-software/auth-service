@@ -9,9 +9,9 @@ replace golang.conradwood.net/apis/auth => ../../golang.conradwood.net/apis/auth
 replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
-	golang.conradwood.net/apis/auth v1.1.2880
-	golang.conradwood.net/apis/common v1.1.2892
-	golang.conradwood.net/go-easyops v0.1.26732
+	golang.conradwood.net/apis/auth v1.1.2897
+	golang.conradwood.net/apis/common v1.1.2898
+	golang.conradwood.net/go-easyops v0.1.26862
 )
 
 require (
@@ -26,15 +26,15 @@ require (
 	golang.conradwood.net/apis/autodeployer v1.1.2878 // indirect
 	golang.conradwood.net/apis/deploymonkey v1.1.2878 // indirect
 	golang.conradwood.net/apis/framework v1.1.2878 // indirect
-	golang.conradwood.net/apis/goeasyops v1.1.2892 // indirect
+	golang.conradwood.net/apis/goeasyops v1.1.2898 // indirect
 	golang.conradwood.net/apis/grafanadata v1.1.2878 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.2878 // indirect
 	golang.conradwood.net/apis/registry v1.1.2878 // indirect
 	golang.org/x/net v0.22.0 // indirect
 	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	golang.yacloud.eu/apis/fscache v1.1.2880 // indirect
-	golang.yacloud.eu/apis/session v1.1.2892 // indirect
+	golang.yacloud.eu/apis/fscache v1.1.2897 // indirect
+	golang.yacloud.eu/apis/session v1.1.2898 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240123012728-ef4313101c80 // indirect
 	google.golang.org/grpc v1.62.1 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect

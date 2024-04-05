@@ -10,12 +10,12 @@ replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
 	github.com/golang/protobuf v1.5.4
-	golang.conradwood.net/apis/auth v1.1.2880
-	golang.conradwood.net/apis/common v1.1.2892
+	golang.conradwood.net/apis/auth v1.1.2897
+	golang.conradwood.net/apis/common v1.1.2898
 	golang.conradwood.net/apis/email v1.1.2752
 	golang.conradwood.net/apis/slackgateway v1.1.2752
 	golang.conradwood.net/authdb v0.0.0-00010101000000-000000000000
-	golang.conradwood.net/go-easyops v0.1.26732
+	golang.conradwood.net/go-easyops v0.1.26862
 	golang.org/x/crypto v0.21.0
 )
 
@@ -31,7 +31,7 @@ require (
 	golang.conradwood.net/apis/autodeployer v1.1.2878 // indirect
 	golang.conradwood.net/apis/deploymonkey v1.1.2878 // indirect
 	golang.conradwood.net/apis/framework v1.1.2878 // indirect
-	golang.conradwood.net/apis/goeasyops v1.1.2892 // indirect
+	golang.conradwood.net/apis/goeasyops v1.1.2898 // indirect
 	golang.conradwood.net/apis/grafanadata v1.1.2878 // indirect
 	golang.conradwood.net/apis/h2gproxy v1.1.2752 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.2878 // indirect
@@ -39,8 +39,8 @@ require (
 	golang.org/x/net v0.22.0 // indirect
 	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	golang.yacloud.eu/apis/fscache v1.1.2880 // indirect
-	golang.yacloud.eu/apis/session v1.1.2892 // indirect
+	golang.yacloud.eu/apis/fscache v1.1.2897 // indirect
+	golang.yacloud.eu/apis/session v1.1.2898 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240123012728-ef4313101c80 // indirect
 	google.golang.org/grpc v1.62.1 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
