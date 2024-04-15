@@ -15,7 +15,7 @@ require (
 	golang.conradwood.net/apis/email v1.1.2752
 	golang.conradwood.net/apis/slackgateway v1.1.2752
 	golang.conradwood.net/authdb v0.0.0-00010101000000-000000000000
-	golang.conradwood.net/go-easyops v0.1.26862
+	golang.conradwood.net/go-easyops v0.1.27161
 	golang.org/x/crypto v0.21.0
 )
 
