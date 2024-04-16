@@ -9,14 +9,14 @@ replace golang.conradwood.net/apis/auth => ../../golang.conradwood.net/apis/auth
 replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
-	golang.conradwood.net/apis/auth v1.1.2897
-	golang.conradwood.net/apis/common v1.1.2898
+	golang.conradwood.net/apis/auth v1.1.2901
+	golang.conradwood.net/apis/common v1.1.2901
 	golang.conradwood.net/apis/email v1.1.2752
 	golang.conradwood.net/authbe v0.0.0-00010101000000-000000000000
 	golang.conradwood.net/authdb v0.0.0-00010101000000-000000000000
-	golang.conradwood.net/go-easyops v0.1.27161
-	golang.org/x/crypto v0.21.0
-	google.golang.org/grpc v1.62.1
+	golang.conradwood.net/go-easyops v0.1.27320
+	golang.org/x/crypto v0.22.0
+	google.golang.org/grpc v1.63.2
 )
 
 require (
@@ -37,22 +37,22 @@ require (
 	golang.conradwood.net/apis/echoservice v1.1.2878 // indirect
 	golang.conradwood.net/apis/errorlogger v1.1.2878 // indirect
 	golang.conradwood.net/apis/framework v1.1.2878 // indirect
-	golang.conradwood.net/apis/goeasyops v1.1.2898 // indirect
+	golang.conradwood.net/apis/goeasyops v1.1.2901 // indirect
 	golang.conradwood.net/apis/grafanadata v1.1.2878 // indirect
 	golang.conradwood.net/apis/h2gproxy v1.1.2752 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.2878 // indirect
 	golang.conradwood.net/apis/registry v1.1.2878 // indirect
 	golang.conradwood.net/apis/slackgateway v1.1.2752 // indirect
-	golang.org/x/net v0.22.0 // indirect
-	golang.org/x/sys v0.18.0 // indirect
+	golang.org/x/net v0.24.0 // indirect
+	golang.org/x/sys v0.19.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.yacloud.eu/apis/autodeployer2 v1.1.2897 // indirect
 	golang.yacloud.eu/apis/fscache v1.1.2897 // indirect
-	golang.yacloud.eu/apis/session v1.1.2898 // indirect
+	golang.yacloud.eu/apis/session v1.1.2901 // indirect
 	golang.yacloud.eu/apis/unixipc v1.1.2878 // indirect
 	golang.yacloud.eu/apis/urlcacher v1.1.2878 // indirect
 	golang.yacloud.eu/unixipc v0.1.26120 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240123012728-ef4313101c80 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240227224415-6ceb2ff114de // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
