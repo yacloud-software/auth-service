@@ -2,11 +2,11 @@ module golang.conradwood.net/defgroup/v2
 
 go 1.21.1
 
-require golang.conradwood.net/apis/auth v1.1.2903
+require golang.conradwood.net/apis/auth v1.1.2904
 
 require (
 	github.com/golang/protobuf v1.5.4 // indirect
-	golang.conradwood.net/apis/common v1.1.2903 // indirect
+	golang.conradwood.net/apis/common v1.1.2904 // indirect
 	golang.org/x/net v0.24.0 // indirect
 	golang.org/x/sys v0.19.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
