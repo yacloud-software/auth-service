@@ -2,10 +2,10 @@ github.com/golang/protobuf v1.5.4 h1:i7eJL8qZTpSEXOPTxNKhASYpMn+8e5Q6AdndVa1dWek
 github.com/golang/protobuf v1.5.4/go.mod h1:lnTiLA8Wa4RWRcIUkrtSVa5nRhsEGBg48fD6rSs7xps=
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
-golang.conradwood.net/apis/auth v1.1.2904 h1:PI729MSxYO/OyupeUBsqPv/ShHgtwCOLTvjpBWRpj2E=
-golang.conradwood.net/apis/auth v1.1.2904/go.mod h1:sxVyEOHjLetO1jNpsdemexLcyNstPSHaHr4UMuNJJlg=
-golang.conradwood.net/apis/common v1.1.2904 h1:ND+gQj3yjahoKo0CB0uYy3ZSi/VosUdYfg2RcOK5u0k=
-golang.conradwood.net/apis/common v1.1.2904/go.mod h1:yK0aF1r2JJN4lyEP88E5PlctOf+vwV4vSmRpYh5wscs=
+golang.conradwood.net/apis/auth v1.1.2905 h1:QXSnUujOmsS2kXt+I3qWKT+Sb1orhoVIz9Cj18XMYi8=
+golang.conradwood.net/apis/auth v1.1.2905/go.mod h1:nIOXO2IT3ZcDkBozrLR2gLRdG8rcqzuR5Ig0q3ltuYg=
+golang.conradwood.net/apis/common v1.1.2905 h1:+AD3QiiV754orNFq7mgzIc3Jm6Db9o9Rp6OFeYBHWzg=
+golang.conradwood.net/apis/common v1.1.2905/go.mod h1:OjsRwxoD906JI5YX1D4BFT604aTl+w5umKaDokEXYrQ=
 golang.org/x/net v0.24.0 h1:1PcaxkF854Fu3+lvBIx5SYn9wRlBzzcnHZSiaFFAb0w=
 golang.org/x/net v0.24.0/go.mod h1:2Q7sJY5mzlzWjKtYUEXSlBWCdyaioyXzRB2RtU8KVE8=
 golang.org/x/sys v0.19.0 h1:q5f1RH2jigJ1MoAWp2KTp3gm5zAGFUTarQZ5U386+4o=
