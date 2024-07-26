@@ -13,7 +13,7 @@ func send_notification(format string, args ...interface{}) {
 	p := &messaging.TopicMessageRequest{Topic: "auth", Message: text}
 	go func(pr *messaging.TopicMessageRequest) {
 		ctx := authremote.Context()
-		_, err := messaging.GetMessagingClient().MessageToTopic(ctx, p)
+		_, err := messaging.GetMessagingClient().MessageToTopic(ctx, pr)
 		if err != nil {
 			fmt.Printf("Failed to slack \"%s\" to \"%s\": %s", pr.Message, "none", utils.ErrorString(err))
 		}
