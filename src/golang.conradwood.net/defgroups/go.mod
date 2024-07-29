@@ -4,11 +4,11 @@ go 1.21.1
 
 toolchain go1.22.2
 
-require golang.conradwood.net/apis/auth v1.1.2951
+require golang.conradwood.net/apis/auth v1.1.2952
 
 require (
 	github.com/golang/protobuf v1.5.4 // indirect
-	golang.conradwood.net/apis/common v1.1.2951 // indirect
+	golang.conradwood.net/apis/common v1.1.2952 // indirect
 	golang.org/x/net v0.27.0 // indirect
 	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/text v0.16.0 // indirect
