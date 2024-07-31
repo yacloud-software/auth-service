@@ -12,11 +12,11 @@ replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
 	golang.conradwood.net/apis/auth v1.1.2901
-	golang.conradwood.net/apis/common v1.1.2952
+	golang.conradwood.net/apis/common v1.1.2956
 	golang.conradwood.net/apis/email v1.1.2948
 	golang.conradwood.net/authbe v0.0.0-00010101000000-000000000000
 	golang.conradwood.net/authdb v0.0.0-00010101000000-000000000000
-	golang.conradwood.net/go-easyops v0.1.28267
+	golang.conradwood.net/go-easyops v0.1.28515
 	golang.org/x/crypto v0.25.0
 	google.golang.org/grpc v1.65.0
 )
@@ -40,7 +40,7 @@ require (
 	golang.conradwood.net/apis/echoservice v1.1.2948 // indirect
 	golang.conradwood.net/apis/errorlogger v1.1.2948 // indirect
 	golang.conradwood.net/apis/framework v1.1.2948 // indirect
-	golang.conradwood.net/apis/goeasyops v1.1.2952 // indirect
+	golang.conradwood.net/apis/goeasyops v1.1.2956 // indirect
 	golang.conradwood.net/apis/grafanadata v1.1.2948 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.2948 // indirect
 	golang.conradwood.net/apis/registry v1.1.2948 // indirect
@@ -50,7 +50,7 @@ require (
 	golang.yacloud.eu/apis/autodeployer2 v1.1.2948 // indirect
 	golang.yacloud.eu/apis/fscache v1.1.2948 // indirect
 	golang.yacloud.eu/apis/messaging v1.1.2948 // indirect
-	golang.yacloud.eu/apis/session v1.1.2952 // indirect
+	golang.yacloud.eu/apis/session v1.1.2956 // indirect
 	golang.yacloud.eu/apis/unixipc v1.1.2948 // indirect
 	golang.yacloud.eu/apis/urlcacher v1.1.2948 // indirect
 	golang.yacloud.eu/unixipc v0.1.26852 // indirect
