@@ -6,7 +6,7 @@ toolchain go1.22.2
 
 require (
 	golang.conradwood.net/apis/auth v1.1.3071
-	golang.conradwood.net/go-easyops v0.1.29912
+	golang.conradwood.net/go-easyops v0.1.30265
 )
 
 require (
