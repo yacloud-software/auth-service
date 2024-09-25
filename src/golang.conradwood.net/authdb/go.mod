@@ -6,7 +6,7 @@ toolchain go1.22.2
 
 require (
 	golang.conradwood.net/apis/auth v1.1.3196
-	golang.conradwood.net/go-easyops v0.1.30304
+	golang.conradwood.net/go-easyops v0.1.30346
 )
 
 require (
@@ -20,13 +20,13 @@ require (
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/prometheus/common v0.59.1 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
-	golang.conradwood.net/apis/common v1.1.3196 // indirect
+	golang.conradwood.net/apis/common v1.1.3200 // indirect
 	golang.conradwood.net/apis/framework v1.1.3196 // indirect
-	golang.conradwood.net/apis/goeasyops v1.1.3196 // indirect
+	golang.conradwood.net/apis/goeasyops v1.1.3200 // indirect
 	golang.org/x/net v0.29.0 // indirect
 	golang.org/x/sys v0.25.0 // indirect
 	golang.org/x/text v0.18.0 // indirect
-	golang.yacloud.eu/apis/session v1.1.3196 // indirect
+	golang.yacloud.eu/apis/session v1.1.3200 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240604185151-ef581f913117 // indirect
 	google.golang.org/grpc v1.66.0 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
