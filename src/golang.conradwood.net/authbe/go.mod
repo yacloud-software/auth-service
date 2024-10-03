@@ -1,8 +1,6 @@
 module golang.conradwood.net/authbe
 
-go 1.21.1
-
-toolchain go1.22.2
+go 1.22.2
 
 replace golang.conradwood.net/authbe => ../../golang.conradwood.net/authbe
 

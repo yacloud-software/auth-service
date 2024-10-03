@@ -1,8 +1,6 @@
 module golang.conradwood.net/defgroup/v2
 
-go 1.21
-
-toolchain go1.22.2
+go 1.22.2
 
 require golang.conradwood.net/apis/auth v1.1.3232
 
