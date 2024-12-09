@@ -1,8 +1,6 @@
 module golang.conradwood.net/authdb
 
-go 1.22.7
-
-toolchain go1.23.3
+go 1.22.2
 
 require (
 	golang.conradwood.net/apis/auth v1.1.3340
