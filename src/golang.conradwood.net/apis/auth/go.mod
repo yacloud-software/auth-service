@@ -4,7 +4,7 @@ go 1.22.2
 
 require (
 	github.com/golang/protobuf v1.5.4
-	golang.conradwood.net/apis/common v1.1.3631
+	golang.conradwood.net/apis/common v1.1.3632
 	golang.org/x/net v0.34.0
 	google.golang.org/grpc v1.70.0
 )
