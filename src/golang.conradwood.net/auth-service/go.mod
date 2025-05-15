@@ -33,13 +33,13 @@ require (
 	github.com/prometheus/procfs v0.15.1 // indirect
 	golang.conradwood.net/apis/autodeployer v1.1.3625 // indirect
 	golang.conradwood.net/apis/certmanager v1.1.3625 // indirect
-	golang.conradwood.net/apis/common v1.1.3859 // indirect
+	golang.conradwood.net/apis/common v1.1.3860 // indirect
 	golang.conradwood.net/apis/deploymonkey v1.1.3625 // indirect
 	golang.conradwood.net/apis/email v1.1.3232 // indirect
 	golang.conradwood.net/apis/errorlogger v1.1.3625 // indirect
 	golang.conradwood.net/apis/framework v1.1.3625 // indirect
 	golang.conradwood.net/apis/getestservice v1.1.3625 // indirect
-	golang.conradwood.net/apis/goeasyops v1.1.3859 // indirect
+	golang.conradwood.net/apis/goeasyops v1.1.3860 // indirect
 	golang.conradwood.net/apis/grafanadata v1.1.3625 // indirect
 	golang.conradwood.net/apis/h2gproxy v1.1.3625 // indirect
 	golang.conradwood.net/apis/objectstore v1.1.3625 // indirect
@@ -53,7 +53,7 @@ require (
 	golang.yacloud.eu/apis/faultindicator v1.1.3625 // indirect
 	golang.yacloud.eu/apis/fscache v1.1.3625 // indirect
 	golang.yacloud.eu/apis/messaging v1.1.3232 // indirect
-	golang.yacloud.eu/apis/session v1.1.3859 // indirect
+	golang.yacloud.eu/apis/session v1.1.3860 // indirect
 	golang.yacloud.eu/apis/unixipc v1.1.3625 // indirect
 	golang.yacloud.eu/apis/urlcacher v1.1.3625 // indirect
 	golang.yacloud.eu/unixipc v0.1.31725 // indirect
