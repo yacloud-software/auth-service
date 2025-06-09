@@ -64,8 +64,8 @@ golang.conradwood.net/apis/autodeployer v1.1.3625 h1:oPHb9M0LH4ME4s6ZIXjBSiaGi/z
 golang.conradwood.net/apis/autodeployer v1.1.3625/go.mod h1:sYXp7XgkNGQ7o0h8QjGinLUGpbKujEGKDeOqVJZ9Lgc=
 golang.conradwood.net/apis/certmanager v1.1.3625 h1:5p0Wbxd2SqeLf9Oujsd3o/AGLQRFsC4n6YVtLv4vV1w=
 golang.conradwood.net/apis/certmanager v1.1.3625/go.mod h1:quOBscA5hQoqIA9NGzZDd7mOIbx6ybsFLLyKxNcpiJg=
-golang.conradwood.net/apis/common v1.1.3896 h1:slaHTmJN8GpEA1B1ECMPM52EH73b2imVu6QMfuubqPU=
-golang.conradwood.net/apis/common v1.1.3896/go.mod h1:hax3RrzqzK/8Njzn5fnwgzVbNzDI9Zstg7XjlOcBmzQ=
+golang.conradwood.net/apis/common v1.1.3897 h1:5tz0wZMmsJPCgzSB9rzEJIxb14mffTTZtdSFXELSDxI=
+golang.conradwood.net/apis/common v1.1.3897/go.mod h1:AoC16RjJ6svaTsBP/yWcX6ooKFB83Y6dhvHM+eH6wZw=
 golang.conradwood.net/apis/deploymonkey v1.1.3625 h1:qiSPGmvcx+poZG1z0+Ik6KN9aFJBrtAjFHgoB/9fbRY=
 golang.conradwood.net/apis/deploymonkey v1.1.3625/go.mod h1:fydetvTrJw+Gta7qPSVjweiFHCgQlcvvNBKzycQzwAc=
 golang.conradwood.net/apis/email v1.1.3232 h1:hi6P3TIsVK3A9ecsB/VhprQ4rkMWqvFJpLfI2BIOHDE=
@@ -76,8 +76,8 @@ golang.conradwood.net/apis/framework v1.1.3625 h1:yD+BPUEp7zqy8RQJ+R81l9e3FW6wjg
 golang.conradwood.net/apis/framework v1.1.3625/go.mod h1:Rj40GnXomWyzSVuNWFl/THkfbjcMDcJn11sGhVufo2E=
 golang.conradwood.net/apis/getestservice v1.1.3625 h1:BolHszddiBQ2cX53J+YgHhrpRKd2S2tI0+Am1cTGmuA=
 golang.conradwood.net/apis/getestservice v1.1.3625/go.mod h1:vfBXluVRuxB/XDYXgQ6stEqO2SCcXe5Hy7/cXI4Bkv0=
-golang.conradwood.net/apis/goeasyops v1.1.3896 h1:oIzQ/ndoKcIyFj+eNuHk3+xY/eeR1bvrNypIMxDPM5M=
-golang.conradwood.net/apis/goeasyops v1.1.3896/go.mod h1:E/Bpnwljly8OLC0RV8ijaTkSK+D6XI0Qxe11rxBvHJE=
+golang.conradwood.net/apis/goeasyops v1.1.3897 h1:CD42cTgFlR6nU5zU56rAJ9QnHgNzIPBsjnihpNW7vu0=
+golang.conradwood.net/apis/goeasyops v1.1.3897/go.mod h1:C62uVEYCbHb6csG48UJTjeGwNjI1WzaJkWtFfoBNq5U=
 golang.conradwood.net/apis/grafanadata v1.1.3625 h1:UDxEw+VWiP95hbZXk7b3Lx3h+BNbhD5HbFIx0Z3GciA=
 golang.conradwood.net/apis/grafanadata v1.1.3625/go.mod h1:pru4j/8hRTOCgqyTY+mWBSparBdq/8eACdbTCc/6BCU=
 golang.conradwood.net/apis/h2gproxy v1.1.3625 h1:qgbrSiMWyaysRw/0ih2wCWX692IYf8p+FzxPHTKyXVc=
@@ -104,8 +104,8 @@ golang.yacloud.eu/apis/fscache v1.1.3625 h1:cD+xLZntxBe+JoPl/oIK71NLlJ2ktTpAT1IO
 golang.yacloud.eu/apis/fscache v1.1.3625/go.mod h1:j+9irz+xwwuUQIKZVVwVYMZ1HZQRvuD/bXrCmW4798A=
 golang.yacloud.eu/apis/messaging v1.1.3232 h1:nRVdRsAX2NVw+ae2+0mUbV02PMGrFqgaNXB5AQO3qQQ=
 golang.yacloud.eu/apis/messaging v1.1.3232/go.mod h1:D/ebSijejN4VxJzaWSDH4RRbhrKu74x/DUSous3mFfk=
-golang.yacloud.eu/apis/session v1.1.3896 h1:KB1tge9BuhuQy+UyitWc019kCrW1pw8QGfpk+w1syOo=
-golang.yacloud.eu/apis/session v1.1.3896/go.mod h1:awcnXm/plGrBEEkh5geFYJw47eoOyPSLdRgObtGVhQQ=
+golang.yacloud.eu/apis/session v1.1.3897 h1:60vIzpxlrnVh6MFkfLjWPKiJpWMmjTxBdgVOzFFhq9Q=
+golang.yacloud.eu/apis/session v1.1.3897/go.mod h1:PM0ryEf6sBaFJ8sf8eDFmmgBVPNaKqN0WfLNJqxCDnI=
 golang.yacloud.eu/apis/unixipc v1.1.3625 h1:prVot0gL1MouDX8sWCLwUgNaUbsVzmM4u08xxz7dKcw=
 golang.yacloud.eu/apis/unixipc v1.1.3625/go.mod h1:3WT5qcADS7Du5ipPdI1ypxb38DYjYo4aHfN1MolEHAw=
 golang.yacloud.eu/apis/urlcacher v1.1.3625 h1:NSybW8/kIBGdNjdsulVsJyRaVUc80HTBCnJzqc+VV6Y=
