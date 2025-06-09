@@ -20,10 +20,10 @@ go.opentelemetry.io/otel/sdk/metric v1.35.0 h1:1RriWBmCKgkeHEhM7a2uMjMUfP7MsOF5J
 go.opentelemetry.io/otel/sdk/metric v1.35.0/go.mod h1:is6XYCUMpcKi+ZsOvfluY5YstFnhW0BidkR+gL+qN+w=
 go.opentelemetry.io/otel/trace v1.35.0 h1:dPpEfJu1sDIqruz7BHFG3c7528f6ddfSWfFDVt/xgMs=
 go.opentelemetry.io/otel/trace v1.35.0/go.mod h1:WUk7DtFp1Aw2MkvqGdwiXYDZZNvA/1J8o6xRXLrIkyc=
-golang.conradwood.net/apis/auth v1.1.3895 h1:ALNkf+ePiQeV9uPonRYpE3UwW9M++pzV2drlKSXi3rE=
-golang.conradwood.net/apis/auth v1.1.3895/go.mod h1:5LWJu6nLRXEVsB+nIBlk8GaqiuW+uBSgN7/dWjPR4z4=
-golang.conradwood.net/apis/common v1.1.3895 h1:X1QPZgr4gU+ZdPKrWBAP8nXsL5HluRsQ+T8x9QEubtw=
-golang.conradwood.net/apis/common v1.1.3895/go.mod h1:CMhbgntHcqaOSFUoVATdpjusSYpDYkDEVGTm/DCgn7Y=
+golang.conradwood.net/apis/auth v1.1.3896 h1:iOFHR51uMyVkrHAyz6lDb/25XY9rjmOI9AEqZ1OHcoM=
+golang.conradwood.net/apis/auth v1.1.3896/go.mod h1:24pBuAPJgW5Cm3e1oRZ1veetSvfwThAWfJJsHY2zwd4=
+golang.conradwood.net/apis/common v1.1.3896 h1:slaHTmJN8GpEA1B1ECMPM52EH73b2imVu6QMfuubqPU=
+golang.conradwood.net/apis/common v1.1.3896/go.mod h1:hax3RrzqzK/8Njzn5fnwgzVbNzDI9Zstg7XjlOcBmzQ=
 golang.org/x/net v0.41.0 h1:vBTly1HeNPEn3wtREYfy4GZ/NECgw2Cnl+nK6Nz3uvw=
 golang.org/x/net v0.41.0/go.mod h1:B/K4NNqkfmg07DQYrbwvSluqCJOOXwUjeb/5lOisjbA=
 golang.org/x/sys v0.33.0 h1:q3i8TbbEz+JRD9ywIRlyRAQbM0qF7hu24q3teo2hbuw=
