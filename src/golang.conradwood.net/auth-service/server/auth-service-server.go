@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+
 	pb "golang.conradwood.net/apis/auth"
+	"golang.conradwood.net/apis/common"
 	"golang.conradwood.net/authbe"
 	"golang.conradwood.net/go-easyops/server"
 	"golang.conradwood.net/go-easyops/utils"
@@ -23,6 +25,9 @@ var (
 
 func main() {
 	flag.Parse() // parse stuff. see "var" section above
+	server.SetHealth(common.Health_STARTING)
+	server.SetHealth(common.Health_READY)
+
 	authBE = authbe.New()
 	err := start()
 	utils.Bail("failed", err)

@@ -4,22 +4,25 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"strings"
+
 	pb "golang.conradwood.net/apis/auth"
 	"golang.conradwood.net/apis/common"
 	"golang.conradwood.net/apis/email"
 	"golang.conradwood.net/authbe"
 	"golang.conradwood.net/authdb/db"
 	"golang.conradwood.net/go-easyops/auth"
-	"strings"
+
 	//	"golang.conradwood.net/go-easyops/authremote"
+	"strconv"
+	"time"
+
 	"golang.conradwood.net/go-easyops/errors"
 	"golang.conradwood.net/go-easyops/server"
 	"golang.conradwood.net/go-easyops/sql"
 	"golang.conradwood.net/go-easyops/utils"
 	"golang.org/x/crypto/bcrypt"
 	"google.golang.org/grpc"
-	"strconv"
-	"time"
 )
 
 var (
@@ -37,6 +40,8 @@ const (
 
 func main() {
 	var err error
+	server.SetHealth(common.Health_STARTING)
+	server.SetHealth(common.Health_READY)
 	flag.Parse()
 	authBE = authbe.New()
 	dbs, err = sql.Open()
