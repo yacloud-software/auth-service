@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+
 	apb "golang.conradwood.net/apis/auth"
 	ar "golang.conradwood.net/go-easyops/authremote"
 	"golang.conradwood.net/go-easyops/utils"
@@ -19,7 +20,7 @@ func main() {
 	sr := &apb.SudoRequest{
 		UserID: *userid,
 	}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 30; i++ {
 		_, err := ar.GetAuthManagerClient().Sudo(ctx, sr)
 		utils.Bail("Failed to sudo", err)
 	}

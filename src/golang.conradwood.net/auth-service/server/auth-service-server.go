@@ -26,8 +26,6 @@ var (
 func main() {
 	flag.Parse() // parse stuff. see "var" section above
 	server.SetHealth(common.Health_STARTING)
-	server.SetHealth(common.Health_READY)
-
 	authBE = authbe.New()
 	err := start()
 	utils.Bail("failed", err)
@@ -45,12 +43,13 @@ func start() error {
 	sd.SetPort(*port)
 	// we ARE the authentication service so don't insist on authenticated calls
 	sd.SetNoAuth()
-
+	sd.SetOnStartupCallback(startup)
 	sd.SetRegister(st)
 	err = server.ServerStartup(sd)
-	if err != nil {
-		fmt.Printf("failed to start server: %s\n", err)
-	}
+	utils.Bail("failed to start server", err)
 	fmt.Printf("Done\n")
 	return nil
+}
+func startup() {
+	server.SetHealth(common.Health_READY)
 }
