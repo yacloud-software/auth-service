@@ -11,8 +11,8 @@ replace golang.conradwood.net/apis/auth => ../../golang.conradwood.net/apis/auth
 replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
-	golang.conradwood.net/apis/common v1.1.4021
-	golang.conradwood.net/go-easyops v0.1.36966
+	golang.conradwood.net/apis/common v1.1.4025
+	golang.conradwood.net/go-easyops v0.1.37146
 )
 
 require (
@@ -25,7 +25,7 @@ require (
 	github.com/prometheus/client_model v0.6.2 // indirect
 	github.com/prometheus/common v0.65.0 // indirect
 	github.com/prometheus/procfs v0.17.0 // indirect
-	golang.conradwood.net/apis/auth v1.1.4006 // indirect
+	golang.conradwood.net/apis/auth v1.1.4021 // indirect
 	golang.conradwood.net/apis/autodeployer v1.1.4021 // indirect
 	golang.conradwood.net/apis/deploymonkey v1.1.4021 // indirect
 	golang.conradwood.net/apis/framework v1.1.4021 // indirect

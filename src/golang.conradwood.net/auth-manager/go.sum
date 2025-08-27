@@ -66,8 +66,8 @@ golang.conradwood.net/apis/autodeployer v1.1.4021 h1:8/ubL7/lpkyHK13uCaRumBCnN1I
 golang.conradwood.net/apis/autodeployer v1.1.4021/go.mod h1:HRfesbY+3wD3X97GoqmR2EWo5I1WWsKp85x24n261Ps=
 golang.conradwood.net/apis/certmanager v1.1.4021 h1:dAOmgNNlTu3VOVAkWFkCcl5bnz9XflrZFyycO9vc/8I=
 golang.conradwood.net/apis/certmanager v1.1.4021/go.mod h1:PpdDjIY//3V84j/qRDPwsT1IT1YUqiDUKneROsZ0bk0=
-golang.conradwood.net/apis/common v1.1.4021 h1:xyJafgraSz0M/fxYxjqhDKeZQnMHvC2/7ifH4EKgykc=
-golang.conradwood.net/apis/common v1.1.4021/go.mod h1:GqcJcY6C4ai7d0oim9pVKc8eKjV+1Pr2NFpe5DGVjd8=
+golang.conradwood.net/apis/common v1.1.4025 h1:szJTT1eUp6DCVBVUHv+mcsPolLzPh5Dm8+/7rJl3XsA=
+golang.conradwood.net/apis/common v1.1.4025/go.mod h1:MiwIR9Wy3Rj1MQc7eFkZQQbp7qLokhjoKLlQrt7IjTo=
 golang.conradwood.net/apis/deploymonkey v1.1.4021 h1:aA27B7dKEF3yWyy7EQs53487aTgaaRo5F1PaAKAXDcw=
 golang.conradwood.net/apis/deploymonkey v1.1.4021/go.mod h1:pFLC/rgPOGmkxDdmuH9fNn39qMFK01NOTyn6ZerPDTA=
 golang.conradwood.net/apis/email v1.1.4021 h1:BcLuhtRN4eXwxMiNBDkxw1Hi3K51kolr6TZ0kkP4bQE=
@@ -88,8 +88,8 @@ golang.conradwood.net/apis/objectstore v1.1.4021 h1:SW4ZRsdGIz9GynPbiLilgnBSLnil
 golang.conradwood.net/apis/objectstore v1.1.4021/go.mod h1:9WgUakT4O+ryds6+Hfwx+VtpGTUPaQysjmuTooO02/c=
 golang.conradwood.net/apis/registry v1.1.4021 h1:EarvxOAe0vB6KPK/8nmAXobh76fLr09LtaX48Co+vTg=
 golang.conradwood.net/apis/registry v1.1.4021/go.mod h1:lFm1cpTbWW1FYPDk/+Ga+Ki01VhQqJpEUVHnjKQ/yp0=
-golang.conradwood.net/go-easyops v0.1.36966 h1:l3anGfKNR6iIKsbyKNd/CzY7qgPzP+4oKtj3LHvTFrI=
-golang.conradwood.net/go-easyops v0.1.36966/go.mod h1:lnKnlxv1TGWEawiFY6pVhjq66mm2KhsnzFyFi2q8cRs=
+golang.conradwood.net/go-easyops v0.1.37146 h1:Z1/3Va4SzLMBxQp29i/vjEsa95/PJyVc9Fy93I6C2ew=
+golang.conradwood.net/go-easyops v0.1.37146/go.mod h1:E458Niid6p66Mv1WSKgFQVTvfT9ptJBbB8CEcbRSAtY=
 golang.org/x/crypto v0.41.0 h1:WKYxWedPGCTVVl5+WHSSrOBT0O8lx32+zxmHxijgXp4=
 golang.org/x/crypto v0.41.0/go.mod h1:pO5AFd7FA68rFak7rOAGVuygIISepHftHnr8dr6+sUc=
 golang.org/x/net v0.42.0 h1:jzkYrhi3YQWD6MLBJcsklgQsoAcw89EcZbJw8Z614hs=

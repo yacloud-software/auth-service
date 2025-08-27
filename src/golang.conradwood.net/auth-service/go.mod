@@ -11,10 +11,10 @@ replace golang.conradwood.net/apis/auth => ../../golang.conradwood.net/apis/auth
 replace golang.conradwood.net/authdb => ../../golang.conradwood.net/authdb
 
 require (
-	golang.conradwood.net/apis/auth v1.1.4006
-	golang.conradwood.net/apis/common v1.1.4021
+	golang.conradwood.net/apis/auth v1.1.4021
+	golang.conradwood.net/apis/common v1.1.4025
 	golang.conradwood.net/authbe v0.0.0-00010101000000-000000000000
-	golang.conradwood.net/go-easyops v0.1.36966
+	golang.conradwood.net/go-easyops v0.1.37146
 	google.golang.org/grpc v1.74.2
 )
 
