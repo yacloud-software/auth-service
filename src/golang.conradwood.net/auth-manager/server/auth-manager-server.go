@@ -49,12 +49,17 @@ func main() {
 	evpstore = db.NewDBEmailVerifyPins(dbs)
 	sd := server.NewServerDef()
 	sd.SetPort(*port)
+sd.SetOnStartupCallback(startup)
 	sd.SetRegister(func(server *grpc.Server) error {
 		pb.RegisterAuthManagerServiceServer(server, &am{})
 		return nil
 	})
 	utils.Bail("failed to start server", server.ServerStartup(sd))
 }
+func startup() {
+	server.SetHealth(common.Health_READY)
+}
+
 
 type am struct {
 }
@@ -347,3 +352,4 @@ func (a *am) GetUserIDsForGroup(ctx context.Context, req *pb.GetUsersInGroupRequ
 func GetListGroupServices() []string {
 	return strings.Split(*list_group_services, ",")
 }
+
